@@ -16,9 +16,13 @@ import { Typography } from '@mui/material'
 import React, { useState } from 'react'
 import Collapse from '@mui/material/Collapse'
 
-const SideBar: React.FC = () => {
-    const [selectedItem, setSelectedItem] = useState('Components');
-    const [open, setOpen] = React.useState(true);
+interface Props {
+    selectedItem: string;
+    handleSelected: (itemName: string) => void;
+}
+
+const SideBar: React.FC<Props> = ({ selectedItem, handleSelected }) => {
+    const [open, setOpen] = React.useState(false);
 
     const sideBarContents = [
         { name: 'Components', icon: open ? <ExpandLess /> : <KeyboardArrowRight /> },
@@ -27,7 +31,7 @@ const SideBar: React.FC = () => {
     ]
 
     const components = [
-        "Header", "Hero Section", "Slider Section", "Detail Section", "Contact Section", "Footer"
+        "Navigation Bar", "Hero Section", "Slider Section", "Detail Section", "Contact Section", "Footer"
     ]
 
     const handleItemClick = (itemName: string) => {
@@ -39,7 +43,7 @@ const SideBar: React.FC = () => {
         else {
             setOpen(false);
         }
-        setSelectedItem(itemName === 'Components' ? '' : itemName)
+        handleSelected(itemName === 'Components' ? '' : itemName)
 
     };
 

@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 
 interface Props {
     buttonText: string;
@@ -7,7 +7,7 @@ interface Props {
     btnWidth?: string;
 }
 
-const CustomButton: React.FC<Props> = ({ buttonText, handleClick, btnWidth, btnTextDeco }) => {
+const CustomButton: React.FC<Props> = ({ buttonText, handleClick, btnWidth }) => {
 
     return (
         <Button

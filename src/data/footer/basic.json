@@ -1,0 +1,112 @@
+{
+    "type": "div",
+    "props": {
+        "children": {
+            "type": "div",
+            "props": {
+                "className": "border relative h-16 flex items-center justify-between px-16",
+                "children": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "flex items-center justify-center gap-10",
+                            "children": [
+                                {
+                                    "type": "img",
+                                    "props": {
+                                        "src": "/src/assets/images/logo.webp",
+                                        "alt": "",
+                                        "className": "h-10"
+                                    }
+                                },
+                                {
+                                    "type": "p",
+                                    "props": {
+                                        "children": [
+                                            "© Hamro Patro ",
+                                            2023,
+                                            ", All Rights Reserved |",
+                                            " ",
+                                            {
+                                                "type": "span",
+                                                "props": {
+                                                    "className": "hover:underline cursor-pointer",
+                                                    "children": "Privacy"
+                                                }
+                                            },
+                                            " |",
+                                            " ",
+                                            {
+                                                "type": "span",
+                                                "props": {
+                                                    "className": "hover:underline cursor-pointer",
+                                                    "children": "Terms of Service"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "flex gap-7",
+                            "children": [
+                                {
+                                    "type": "p",
+                                    "props": {
+                                        "className": "rounded-full cursor-pointer text-blue-800 hover:scale-105 transition duration-200",
+                                        "children": {
+                                            "type": "FaFacebook",
+                                            "props": {
+                                                "size": 25
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "p",
+                                    "props": {
+                                        "className": " rounded-full cursor-pointer text-rose-600 hover:scale-105 transition duration-200",
+                                        "children": {
+                                            "type": "RiInstagramFill",
+                                            "props": {
+                                                "size": 27
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "p",
+                                    "props": {
+                                        "className": " rounded-full cursor-pointer hover:scale-105 transition duration-200",
+                                        "children": {
+                                            "type": "FaXTwitter",
+                                            "props": {
+                                                "size": 25
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "p",
+                                    "props": {
+                                        "className": " rounded-full cursor-pointer text-[#E50914] hover:scale-105 transition duration-200",
+                                        "children": {
+                                            "type": "IoLogoYoutube",
+                                            "props": {
+                                                "size": 26
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
