@@ -3,7 +3,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { Typography } from "@mui/material"
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import TextField from '@mui/material/TextField'
 import { HexColorPicker } from "react-colorful"
 import InputAdornment from '@mui/material/InputAdornment'

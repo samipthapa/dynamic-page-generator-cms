@@ -3,6 +3,7 @@ import Test from "../components/common/Test"
 import Footer from "../components/sideBar/Footer"
 import { useState } from "react"
 import Header from "../components/sideBar/Header"
+import HeroSection from "../components/sideBar/HeroSection"
 
 const Dashboard = () => {
     const [selectedItem, setSelectedItem] = useState('');
@@ -17,6 +18,8 @@ const Dashboard = () => {
                 return <Footer />
             case "Navigation Bar":
                 return <Header />
+            case "Hero Section":
+                return <HeroSection />
             default:
                 return null
         }

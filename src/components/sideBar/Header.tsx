@@ -16,8 +16,6 @@ const Header = () => {
     const [bgColor, setBgColor] = useState("#121212");
     const [textColor, setTextColor] = useState("#121212");
 
-    // let header = deserialize(basic);
-
     let header;
 
     if (style === 'Basic') {
@@ -95,7 +93,8 @@ const Header = () => {
                 </div>
             </div >
             <Typography variant="subtitle1">Preview</Typography>
-            <div className="mt-4 mb-6">
+
+            <div className="mt-4 mb-6 border-2 w-[95%] h-14 overflow-hidden">
                 {header}
             </div>
 
