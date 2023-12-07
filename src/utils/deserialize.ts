@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io5";
 import { RiInstagramFill } from "react-icons/ri";
+import reactElementToJSXString from "react-element-to-jsx-string";
 
 const componentMap = {
     IoLogoYoutube,
@@ -29,7 +30,11 @@ const deserialize = (data) => {
 
     const elementType = componentMap[type] || type;
 
-    return React.createElement(elementType, props, children);
+    const jsxElement = React.createElement(elementType, props, children);
+
+    // console.log('Generated JSX:', reactElementToJSXString(jsxElement));
+
+    return jsxElement;
 };
 
 export default deserialize;

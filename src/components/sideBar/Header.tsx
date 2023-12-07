@@ -3,37 +3,35 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { Typography } from "@mui/material"
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import TextField from '@mui/material/TextField'
 import { HexColorPicker } from "react-colorful"
 import InputAdornment from '@mui/material/InputAdornment'
 import deserialize from "../../utils/deserialize"
-import basic from "../../data/footer/basic.json"
-import centered from "../../data/footer/centered.json"
-import reactElementToJSXString from "react-element-to-jsx-string"
+import basic from "../../data/header/basic.json"
+import centered from "../../data/header/centered.json"
 
-const Footer = () => {
+const Header = () => {
     const [style, setStyle] = useState('Basic');
     const [bgColor, setBgColor] = useState("#121212");
     const [textColor, setTextColor] = useState("#121212");
 
-    let footer;
+    // let header = deserialize(basic);
+
+    let header;
 
     if (style === 'Basic') {
-        footer = deserialize(basic);
-        console.log(reactElementToJSXString(footer));
+        header = deserialize(basic);
     } else if (style === 'Centered') {
-        footer = deserialize(centered);
-        console.log(reactElementToJSXString(footer));
-
+        header = deserialize(centered);
     }
 
     return (
         <div>
-            <p className="font-gilroy-bold text-gray-400">FOOTER EDITOR</p>
+            <p className="font-gilroy-bold text-gray-400">NAVIGATION BAR EDITOR</p>
 
             <div className="my-4">
-                <Typography variant="subtitle1">Footer Style</Typography>
+                <Typography variant="subtitle1">Navigation Bar Style</Typography>
                 <div className="w-1/4 my-1">
                     <FormControl size="small" fullWidth>
                         <Select
@@ -98,7 +96,7 @@ const Footer = () => {
             </div >
             <Typography variant="subtitle1">Preview</Typography>
             <div className="mt-4 mb-6">
-                {footer}
+                {header}
             </div>
 
             <CustomButton buttonText="Save Changes" />
@@ -106,4 +104,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Header

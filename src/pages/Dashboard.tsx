@@ -2,6 +2,7 @@ import SideBar from "../components/common/SideBar"
 import Test from "../components/common/Test"
 import Footer from "../components/sideBar/Footer"
 import { useState } from "react"
+import Header from "../components/sideBar/Header"
 
 const Dashboard = () => {
     const [selectedItem, setSelectedItem] = useState('');
@@ -14,6 +15,8 @@ const Dashboard = () => {
         switch (selectedItem) {
             case 'Footer':
                 return <Footer />
+            case "Navigation Bar":
+                return <Header />
             default:
                 return null
         }

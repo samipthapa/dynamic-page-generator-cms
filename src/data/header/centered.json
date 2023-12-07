@@ -1,0 +1,88 @@
+{
+    "type": "div",
+    "props": {
+        "className": "fixed w-full bg-neutral-100 shadow-md hover:shadow-lg py-2 -mt-5 px-14 z-10 flex items-center justify-between",
+        "children": [
+            {
+                "type": "a",
+                "props": {
+                    "href": "#",
+                    "className": "flex items-center justify-center gap-4",
+                    "children": {
+                        "type": "div",
+                        "props": {
+                            "children": {
+                                "type": "img",
+                                "props": {
+                                    "src": "/src/assets/images/logo.webp",
+                                    "alt": "logo",
+                                    "className": "h-14 w-14 hidden md:block rounded-md"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "type": "div",
+                "props": {
+                    "className": "flex flex-col items-center",
+                    "children": [
+                        {
+                            "type": "a",
+                            "props": {
+                                "href": "#",
+                                "className": "uppercase font-bold text-lg",
+                                "children": "hamro patro"
+                            }
+                        },
+                        {
+                            "type": "nav",
+                            "props": {
+                                "className": "flex text-lg gap-7 font-medium py-1",
+                                "children": [
+                                    {
+                                        "type": "a",
+                                        "props": {
+                                            "href": "#",
+                                            "className": "hover:text-[#E50914]",
+                                            "children": "Home"
+                                        }
+                                    },
+                                    {
+                                        "type": "a",
+                                        "props": {
+                                            "href": "#about",
+                                            "className": "hover:text-[#E50914] ",
+                                            "children": "About"
+                                        }
+                                    },
+                                    {
+                                        "type": "a",
+                                        "props": {
+                                            "href": "#services",
+                                            "className": "hover:text-[#E50914] ",
+                                            "children": "Services"
+                                        }
+                                    },
+                                    {
+                                        "type": "a",
+                                        "props": {
+                                            "href": "#contact",
+                                            "className": "hover:text-[#E50914] ",
+                                            "children": "Contact Us"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "div",
+                "props": {}
+            }
+        ]
+    }
+}
