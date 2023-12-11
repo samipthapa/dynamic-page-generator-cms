@@ -1,9 +1,11 @@
 {
     "type": "div",
     "props": {
+        "id": "footer-section",
         "children": {
             "type": "div",
             "props": {
+                "id": "body",
                 "style": {
                     "display": "flex",
                     "position": "relative",
@@ -12,7 +14,8 @@
                     "justifyContent": "space-between",
                     "alignItems": "center",
                     "borderWidth": "1px",
-                    "height": "4rem"
+                    "height": "4rem",
+                    "backgroundColor": "#f69e9e"
                 },
                 "children": [
                     {

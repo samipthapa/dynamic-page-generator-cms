@@ -11,22 +11,45 @@ import deserialize from "../../utils/deserialize"
 import basic from "../../data/footer/basic.json"
 import centered from "../../data/footer/centered.json"
 import reactElementToJSXString from "react-element-to-jsx-string"
+import { serialize } from "../../utils/serialize"
+import { useEffect } from "react"
+
+function rgbToHex(rgb) {
+    // Extract the RGB values
+    const rgbArray = rgb.match(/\d+/g);
+
+    // Convert each component to a hexadecimal value
+    const hexArray = rgbArray.map(component => {
+        const hex = parseInt(component).toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+    });
+
+    // Combine the hexadecimal values
+    return "#" + hexArray.join('');
+}
 
 const Footer = () => {
     const [style, setStyle] = useState('Basic');
-    const [bgColor, setBgColor] = useState("#121212");
-    const [textColor, setTextColor] = useState("#121212");
+    const [textColor, setTextColor] = useState("#000000");
+    const [bgColor, setBgColor] = useState("")
 
     let footer;
 
     if (style === 'Basic') {
         footer = deserialize(basic);
-        console.log(reactElementToJSXString(footer));
+        console.log(document.getElementById('body')?.style.backgroundColor)
     } else if (style === 'Centered') {
         footer = deserialize(centered);
-        console.log(reactElementToJSXString(footer));
-
     }
+
+    useEffect(() => {
+        console.log(document.getElementById('body')?.style.backgroundColor)
+        if (bgColor === "") {
+            setBgColor(rgbToHex(document.getElementById('body')?.style.backgroundColor))
+        } else {
+            document.getElementById('body').style.backgroundColor = bgColor;
+        }
+    }, [bgColor])
 
     return (
         <div>
@@ -97,11 +120,17 @@ const Footer = () => {
                 </div>
             </div >
             <Typography variant="subtitle1">Preview</Typography>
+
             <div className="mt-4 mb-6">
                 {footer}
             </div>
 
-            <CustomButton buttonText="Save Changes" />
+            <CustomButton
+                handleClick={() => {
+                    console.log(document.getElementById('footer-section'))
+                }}
+                buttonText="Save Changes"
+            />
         </div >
     )
 }
