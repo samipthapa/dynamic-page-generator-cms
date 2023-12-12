@@ -7,67 +7,77 @@
             "props": {
                 "id": "body",
                 "style": {
+                    "alignItems": "center",
+                    "backgroundColor": "#f69e9e",
+                    "borderWidth": "1px",
                     "display": "flex",
-                    "position": "relative",
+                    "height": "4rem",
+                    "justifyContent": "space-between",
                     "paddingLeft": "4rem",
                     "paddingRight": "4rem",
-                    "justifyContent": "space-between",
-                    "alignItems": "center",
-                    "borderWidth": "1px",
-                    "height": "4rem",
-                    "backgroundColor": "#f69e9e"
+                    "position": "relative"
                 },
                 "children": [
                     {
                         "type": "div",
                         "props": {
                             "style": {
+                                "alignItems": "center",
                                 "display": "flex",
                                 "gap": "2.5rem",
-                                "justifyContent": "center",
-                                "alignItems": "center"
+                                "justifyContent": "center"
                             },
                             "children": [
                                 {
                                     "type": "img",
                                     "props": {
-                                        "src": "/src/assets/images/logo.webp",
                                         "alt": "",
+                                        "src": "/src/assets/images/logo.webp",
                                         "style": {
                                             "height": "2.5rem"
                                         }
                                     }
                                 },
                                 {
-                                    "type": "p",
+                                    "type": "div",
                                     "props": {
+                                        "id": "footer-text",
+                                        "style": {
+                                            "color": "#000000"
+                                        },
                                         "children": [
-                                            "© Hamro Patro ",
-                                            2023,
-                                            ", All Rights Reserved |",
-                                            " ",
                                             {
                                                 "type": "span",
                                                 "props": {
+                                                    "id": "company",
                                                     "style": {
-                                                        "cursor": "pointer",
-                                                        ":hover": {
-                                                            "textDecoration": "underline"
-                                                        }
+                                                        "cursor": "text"
+                                                    },
+                                                    "children": [
+                                                        "© Hamro Patro 2023, All Rights Reserved |",
+                                                        " "
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "type": "span",
+                                                "props": {
+                                                    "id": "privacy",
+                                                    "style": {
+                                                        "cursor": "text"
                                                     },
                                                     "children": "Privacy"
                                                 }
                                             },
-                                            " |",
+                                            " ",
+                                            "|",
                                             " ",
                                             {
                                                 "type": "span",
                                                 "props": {
+                                                    "id": "terms-of-service",
                                                     "style": {
-                                                        "cursor": "pointer",
-                                                        ":hover": {
-                                                            "textDecoration": "underline"
-                                                        }
+                                                        "cursor": "text"
                                                     },
                                                     "children": "Terms of Service"
                                                 }
@@ -87,22 +97,24 @@
                             },
                             "children": [
                                 {
-                                    "type": "p",
+                                    "type": "a",
                                     "props": {
+                                        "id": "facebook",
+                                        "href": "https://www.facebook.com/HamroPatro/",
                                         "style": {
+                                            ":hover": {
+                                                "--transform-scale-x": "1.05",
+                                                "--transform-scale-y": "1.05"
+                                            },
                                             "borderRadius": "9999px",
                                             "color": "#1E40AF",
-                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
-                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)",
+                                            "cursor": "pointer",
                                             "transitionDuration": [
                                                 "300ms",
                                                 "200ms"
                                             ],
-                                            "cursor": "pointer",
-                                            ":hover": {
-                                                "--transform-scale-x": "1.05",
-                                                "--transform-scale-y": "1.05"
-                                            }
+                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)"
                                         },
                                         "children": {
                                             "type": "FaFacebook",
@@ -116,18 +128,18 @@
                                     "type": "p",
                                     "props": {
                                         "style": {
+                                            ":hover": {
+                                                "--transform-scale-x": "1.05",
+                                                "--transform-scale-y": "1.05"
+                                            },
                                             "borderRadius": "9999px",
-                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
-                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)",
+                                            "cursor": "pointer",
                                             "transitionDuration": [
                                                 "300ms",
                                                 "200ms"
                                             ],
-                                            "cursor": "pointer",
-                                            ":hover": {
-                                                "--transform-scale-x": "1.05",
-                                                "--transform-scale-y": "1.05"
-                                            }
+                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)"
                                         },
                                         "children": {
                                             "type": "RiInstagramFill",
@@ -141,18 +153,18 @@
                                     "type": "p",
                                     "props": {
                                         "style": {
+                                            ":hover": {
+                                                "--transform-scale-x": "1.05",
+                                                "--transform-scale-y": "1.05"
+                                            },
                                             "borderRadius": "9999px",
-                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
-                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)",
+                                            "cursor": "pointer",
                                             "transitionDuration": [
                                                 "300ms",
                                                 "200ms"
                                             ],
-                                            "cursor": "pointer",
-                                            ":hover": {
-                                                "--transform-scale-x": "1.05",
-                                                "--transform-scale-y": "1.05"
-                                            }
+                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)"
                                         },
                                         "children": {
                                             "type": "FaXTwitter",
@@ -166,19 +178,19 @@
                                     "type": "p",
                                     "props": {
                                         "style": {
+                                            ":hover": {
+                                                "--transform-scale-x": "1.05",
+                                                "--transform-scale-y": "1.05"
+                                            },
                                             "borderRadius": "9999px",
-                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
-                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)",
+                                            "color": "#E50914",
+                                            "cursor": "pointer",
                                             "transitionDuration": [
                                                 "300ms",
                                                 "200ms"
                                             ],
-                                            "cursor": "pointer",
-                                            "color": "#E50914",
-                                            ":hover": {
-                                                "--transform-scale-x": "1.05",
-                                                "--transform-scale-y": "1.05"
-                                            }
+                                            "transitionProperty": "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+                                            "transitionTimingFunction": "cubic-bezier(0.4, 0, 0.2, 1)"
                                         },
                                         "children": {
                                             "type": "IoLogoYoutube",

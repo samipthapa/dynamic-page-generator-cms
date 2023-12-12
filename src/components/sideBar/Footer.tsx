@@ -11,8 +11,10 @@ import deserialize from "../../utils/deserialize"
 import basic from "../../data/footer/basic.json"
 import centered from "../../data/footer/centered.json"
 import reactElementToJSXString from "react-element-to-jsx-string"
-import { serialize } from "../../utils/serialize"
 import { useEffect } from "react"
+import TextDialog from "../common/TextDialog"
+import LinkDialog from "../common/LinkDialog"
+import { serialize } from "../../utils/serialize"
 
 function rgbToHex(rgb) {
     // Extract the RGB values
@@ -30,26 +32,75 @@ function rgbToHex(rgb) {
 
 const Footer = () => {
     const [style, setStyle] = useState('Basic');
-    const [textColor, setTextColor] = useState("#000000");
+    const [textColor, setTextColor] = useState("");
     const [bgColor, setBgColor] = useState("")
+    const [text, setText] = useState("")
+    const [open, setOpen] = useState(false)
+    const [value, setValue] = useState("")
+    const [field, setField] = useState({
+        company: "",
+        facebook: ""
+    })
 
     let footer;
 
     if (style === 'Basic') {
         footer = deserialize(basic);
-        console.log(document.getElementById('body')?.style.backgroundColor)
     } else if (style === 'Centered') {
         footer = deserialize(centered);
     }
 
+    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // setText(e.target.value)
+        setField({
+            ...field,
+            [e.target.name]: e.target.value
+        })
+        if (value == "facebook") {
+            document.getElementById(`${value}`).href = e.target.value
+        }
+        document.getElementById(`${value}`).innerText = e.target.value
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
     useEffect(() => {
-        console.log(document.getElementById('body')?.style.backgroundColor)
         if (bgColor === "") {
             setBgColor(rgbToHex(document.getElementById('body')?.style.backgroundColor))
         } else {
             document.getElementById('body').style.backgroundColor = bgColor;
         }
-    }, [bgColor])
+
+        if (textColor === "") {
+            setTextColor(rgbToHex(document.getElementById('footer-text')?.style.color))
+        } else {
+            document.getElementById('footer-text').style.color = textColor;
+
+        }
+    }, [bgColor, textColor])
+
+    useEffect(() => {
+        if (text === "") {
+            setText(document.getElementById('company').innerText)
+        }
+        setField({
+            ...field,
+            company: document.getElementById('company').innerText,
+            facebook: document.getElementById('facebook')?.getAttribute('href')
+        })
+    }, [])
+
+    function handleClick(id: string) {
+        setValue(id);
+        setOpen(true);
+    }
+
+    let company = document.getElementById('company');
+    let facebook = document.getElementById('facebook');
+
+    company?.addEventListener('click', () => handleClick("company"));
 
     return (
         <div>
@@ -125,9 +176,24 @@ const Footer = () => {
                 {footer}
             </div>
 
+            <TextDialog
+                open={open}
+                field={field}
+                handleTextChange={handleTextChange}
+                handleClose={handleClose}
+                value={value}
+            />
+
+            {/* <LinkDialog
+                open={open}
+                data={link}
+                handleTextChange={handleTextChange}
+                handleClose={handleClose}
+            /> */}
+
             <CustomButton
                 handleClick={() => {
-                    console.log(document.getElementById('footer-section'))
+                    console.log(serialize(footer))
                 }}
                 buttonText="Save Changes"
             />
