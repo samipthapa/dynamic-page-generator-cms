@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
-import Login from "./pages/Login"
-import Dashboard from './pages/Dashboard'
-import { theme } from "./utils/theme"
-import { ThemeProvider } from '@mui/material/styles';
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import { theme } from "./utils/theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 export default function App() {
   return (
@@ -14,6 +14,5 @@ export default function App() {
         </Routes>
       </ThemeProvider>
     </>
-
-  )
+  );
 }
