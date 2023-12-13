@@ -1,87 +1,276 @@
 import logo from "../../assets/images/logo.webp"
-import { FaFacebook } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
-import { IoLogoYoutube } from "react-icons/io5";
-import { RiInstagramFill } from "react-icons/ri";
+// import { FaFacebook } from "react-icons/fa6";
+// import { FaXTwitter } from "react-icons/fa6";
+// import { IoLogoYoutube } from "react-icons/io5";
+// import { RiInstagramFill } from "react-icons/ri";
+import { PiUsersBold } from "react-icons/pi";
+import { PiStackBold } from "react-icons/pi";
+import { TbMoodHappy } from "react-icons/tb";
+import { IoLocation } from "react-icons/io5";
 
 const MyComponent = (
     <div
-        id="hero-split"
         style={{
-            backgroundColor: '#ffffff',
-            height: '85vh',
-            marginBottom: '1.25rem',
-            marginTop: '1.25rem',
-            paddingBottom: '5rem',
-            paddingTop: '5rem'
+            display: "flex",
+            paddingTop: "6rem",
+            paddingBottom: "6rem",
+            gap: "2.5rem",
         }}
+        id="about"
     >
         <div
             style={{
-                display: 'grid',
-                gap: '8rem',
-                gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
+                display: "flex",
+                flexDirection: "column",
+                paddingLeft: "60px",
+                paddingRight: "16px",
+                paddingTop: "110px",
+                paddingBottom: "10px",
+                marginTop: "32px",
+                height: "16rem",
+                backgroundColor: "#DC2626",
             }}
         >
-            <div
+            <h1
+                id="about"
                 style={{
-                    alignItems: 'center',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    left: '1.25rem',
-                    position: 'relative',
-                    top: '5rem'
+                    marginTop: "-6rem",
+                    fontSize: "3rem",
+                    lineHeight: 1,
+                    fontWeight: 600,
+                    color: "#ffffff",
+                    textTransform: "capitalize",
                 }}
             >
-                <img
-                    alt="Banner"
-                    height={600}
-                    id="hero-banner"
-                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    style={{
-                        borderRadius: '0.25rem',
-                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-                        marginTop: '0.5rem'
-                    }}
-                    width={550}
-                />
-            </div>
+                About us
+            </h1>
             <p
+                id="welcomeText"
                 style={{
-                    fontSize: '1.875rem',
-                    lineHeight: '2.25rem',
-                    position: 'relative',
-                    right: '6rem',
-                    textAlign: 'center',
-                    top: '11rem',
-                    userSelect: 'none'
+                    paddingTop: "1.25rem",
+                    fontSize: "1.25rem",
+                    lineHeight: "1.75rem",
+                    fontWeight: 400,
+                    color: "#ffffff",
                 }}
             >
-                At Hamro Patro, we design seamless digital experiences . Explore our cutting-edge products for convenience that elevates your digital lifestyle .
+                Welcome to Hamro Patro, a leading IT company dedicated to revolutionizing the digital landscape. With a relentless commitment to innovation, we bring you a diverse portfolio of cutting-edge products designed to simplify and enhance your online experience.
             </p>
-            <a
-                href="#services"
-                style={{
-                    ':hover': {
-                        color: '#E50914'
-                    },
-                    backgroundColor: '#DC2626',
-                    borderRadius: '0.375rem',
-                    bottom: '6rem',
-                    color: '#FFFFFF',
-                    fontSize: '1.125rem',
-                    fontWeight: 500,
-                    lineHeight: '1.75rem',
-                    paddingBottom: '0.5rem',
-                    paddingLeft: '1rem',
-                    paddingRight: '1rem',
-                    paddingTop: '0.5rem',
-                    position: 'absolute',
-                    right: '9rem'
-                }}
+
+            <div style={{ position: "relative", top: "7rem" }}>
+                <h1
+                    id="visionHeading"
+                    style={{
+                        fontSize: "3rem",
+                        lineHeight: 1,
+                        fontWeight: 500,
+                        color: "#DC2626",
+                    }}
+                >
+                    Our Vision:
+                </h1>
+                <p
+                    id="visionText"
+                    style={{
+                        paddingTop: "0.75rem",
+                        paddingBottom: "0.75rem",
+                        fontSize: "1.125rem",
+                        lineHeight: "1.75rem",
+                        fontWeight: 500,
+                    }}
+                >
+                    Empowering individuals and businesses through the limitless
+                    possibilities of technology. We envision a world where connectivity,
+                    convenience, and creativity converge to shape a brighter and more
+                    accessible future.
+                </p>
+            </div>
+        </div>
+
+        <div
+            style={{
+                display: "flex",
+                paddingRight: "4rem",
+                paddingTop: "31px",
+                gap: "2.5rem",
+            }}
+        >
+            <div style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "0.375rem",
+                        width: "12rem",
+                        height: "12rem",
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                        ":hover": {
+                            boxShadow:
+                                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                        },
+                    }}
+                >
+                    <h1 style={{ color: "#e50914" }}>
+                        <PiUsersBold size={60} />
+                    </h1>
+                    <h1
+                        style={{
+                            paddingTop: "1.25rem",
+                            fontSize: "2.25rem",
+                            lineHeight: "2.5rem",
+                            fontWeight: 500,
+                        }}
+                    >
+                        80+
+                    </h1>
+                    <h2
+                        style={{
+                            paddingTop: "0.75rem",
+                            fontSize: "1.125rem",
+                            lineHeight: "1.75rem",
+                            textTransform: "uppercase",
+                        }}
+                    >
+                        TEAM MEMBERS
+                    </h2>
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "0.375rem",
+                        width: "12rem",
+                        height: "12rem",
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                        ":hover": {
+                            boxShadow:
+                                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                        },
+                    }}
+                >
+                    <h1 style={{ color: "#e50914" }}>
+                        <PiStackBold size={60} />
+                    </h1>
+                    <h1
+                        style={{
+                            paddingTop: "1.25rem",
+                            fontSize: "2.25rem",
+                            lineHeight: "2.5rem",
+                            fontWeight: 500,
+                        }}
+                    >
+                        10+
+                    </h1>
+                    <h2
+                        style={{
+                            paddingTop: "0.75rem",
+                            fontSize: "1.125rem",
+                            lineHeight: "1.75rem",
+                            textTransform: "uppercase",
+                        }}
+                    >
+                        projects
+                    </h2>
+                </div>
+            </div>
+            <div
+                style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
             >
-                Explore our products
-            </a>
+                <div
+                    style={{
+                        display: "flex",
+                        padding: "1rem",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "0.375rem",
+                        width: "12rem",
+                        height: "12rem",
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                        ":hover": {
+                            boxShadow:
+                                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                        },
+                    }}
+                >
+                    <h1 style={{ color: "#e50914" }}>
+                        <TbMoodHappy size={60} />
+                    </h1>
+                    <h1
+                        style={{
+                            paddingTop: "1.25rem",
+                            fontSize: "2.25rem",
+                            lineHeight: "2.5rem",
+                            fontWeight: 500,
+                        }}
+                    >
+                        10M+
+                    </h1>
+                    <h2
+                        style={{
+                            paddingTop: "0.75rem",
+                            fontSize: "1.125rem",
+                            lineHeight: "1.75rem",
+                            textTransform: "uppercase",
+                        }}
+                    >
+                        happy users
+                    </h2>
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        padding: "1rem",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "0.375rem",
+                        width: "12rem",
+                        height: "12rem",
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                        ":hover": {
+                            boxShadow:
+                                "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                        },
+                    }}
+                >
+                    <h1 style={{ color: "#e50914" }}>
+                        <IoLocation size={60} />
+                    </h1>
+                    <h1
+                        style={{
+                            paddingTop: "1.25rem",
+                            fontSize: "2.25rem",
+                            lineHeight: "2.5rem",
+                            fontWeight: 500,
+                        }}
+                    >
+                        1
+                    </h1>
+                    <h2
+                        style={{
+                            paddingTop: "0.75rem",
+                            fontSize: "1.125rem",
+                            lineHeight: "1.75rem",
+                            textTransform: "uppercase",
+                        }}
+                    >
+                        office
+                    </h2>
+                </div>
+            </div>
         </div>
     </div>
 );

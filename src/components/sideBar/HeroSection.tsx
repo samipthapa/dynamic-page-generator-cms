@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField'
 import { HexColorPicker } from "react-colorful"
 import InputAdornment from '@mui/material/InputAdornment'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
-import DeleteIcon from '@mui/icons-material/Delete'
+// import DeleteIcon from '@mui/icons-material/Delete'
 import { IconButton } from '@mui/material';
 import split from "../../data/hero-section/Split.json"
 import centered from "../../data/hero-section/Centered.json"
@@ -44,12 +44,16 @@ const HeroSection = () => {
     let hero;
 
     if (style === 'Split') {
-        hero = deserialize(split);
+        hero = deserialize(split)
     }
     else if (style === 'Centered') {
-        hero = deserialize(centered);
+        hero = deserialize(centered)
     }
 
+    useEffect(() => {
+        setImage("")
+        setTextColor("")
+    }, [style])
 
     useEffect(() => {
         if (textColor == "") {
@@ -98,11 +102,11 @@ const HeroSection = () => {
             });
     }
 
-    function clearImage() {
-        setImage("");
-        const heroBanner = document.getElementById("hero-banner") as HTMLImageElement; // or HTMLVideoElement
-        heroBanner.src = "";
-    }
+    // function clearImage() {
+    //     setImage("");
+    //     const heroBanner = document.getElementById("hero-banner") as HTMLImageElement; // or HTMLVideoElement
+    //     heroBanner.src = "";
+    // }
 
     let heroText = document.getElementById('hero-text');
     heroText?.addEventListener('click', () => setOpen(true));
@@ -208,7 +212,7 @@ const HeroSection = () => {
                                     src={image}
                                     style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
                                 />
-                                <div className='absolute top-0 right-0 mr-1 mt-1'>
+                                {/* <div className='absolute top-0 right-0 mr-1 mt-1'>
                                     <IconButton>
                                         <DeleteIcon
                                             color='error'
@@ -219,7 +223,7 @@ const HeroSection = () => {
                                             }}
                                         />
                                     </IconButton>
-                                </div>
+                                </div> */}
                             </div>
                         ) : (
                             <div className="flex flex-col justify-center items-center">

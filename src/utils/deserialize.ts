@@ -2,12 +2,20 @@ import React from "react";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io5";
 import { RiInstagramFill } from "react-icons/ri";
-import reactElementToJSXString from "react-element-to-jsx-string";
+import { PiUsersBold } from "react-icons/pi"
+import { PiStackBold } from "react-icons/pi"
+import { TbMoodHappy } from "react-icons/tb"
+import { IoLocation } from "react-icons/io5"
 
 const componentMap = {
     IoLogoYoutube,
     RiInstagramFill,
-    FaFacebook, FaXTwitter
+    FaFacebook,
+    FaXTwitter,
+    PiUsersBold,
+    PiStackBold,
+    TbMoodHappy,
+    IoLocation
 };
 
 
@@ -31,8 +39,6 @@ const deserialize = (data) => {
     const elementType = componentMap[type] || type;
 
     const jsxElement = React.createElement(elementType, props, children);
-
-    // console.log('Generated JSX:', reactElementToJSXString(jsxElement));
 
     return jsxElement;
 };

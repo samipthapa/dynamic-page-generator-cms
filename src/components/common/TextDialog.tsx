@@ -7,22 +7,24 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export interface TextDialogProps {
     open: boolean;
-    // field: Object;
     handleTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClose: () => void;
     value: string;
+    field?: Object;
 }
 
 function TextDialog(props: TextDialogProps) {
     // const { handleTextChange, field, open, handleClose, value } = props;
-    const { handleTextChange, open, handleClose, value } = props;
+    const { handleTextChange, open, handleClose, value, field } = props;
 
-
-    // const temp = field.hasOwnProperty(value) ? field[value] : ""
+    let temp;
+    if (field) {
+        temp = field.hasOwnProperty(value) ? field[value] : ""
+    }
 
     return (
         <Dialog onClose={handleClose} open={open}>
-            <div className="w-80">
+            <div className="w-96">
                 <IconButton
                     aria-label="close"
                     onClick={() => handleClose()}
@@ -43,7 +45,7 @@ function TextDialog(props: TextDialogProps) {
                             size="small"
                             sx={{ marginBottom: '0.5rem' }}
                             className="w-full"
-                            value={value}
+                            value={temp ? temp : value}
                             onChange={handleTextChange}
                             multiline
                         />
