@@ -6,6 +6,9 @@ import { PiUsersBold } from "react-icons/pi"
 import { PiStackBold } from "react-icons/pi"
 import { TbMoodHappy } from "react-icons/tb"
 import { IoLocation } from "react-icons/io5"
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const componentMap = {
     IoLogoYoutube,
@@ -15,7 +18,10 @@ const componentMap = {
     PiUsersBold,
     PiStackBold,
     TbMoodHappy,
-    IoLocation
+    IoLocation,
+    FaLocationDot,
+    FaPhoneAlt,
+    MdEmail
 };
 
 

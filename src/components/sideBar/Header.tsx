@@ -8,8 +8,8 @@ import TextField from '@mui/material/TextField'
 import { HexColorPicker } from "react-colorful"
 import InputAdornment from '@mui/material/InputAdornment'
 import deserialize from "../../utils/deserialize"
-import basic from "../../data/header/basic.json"
-import centered from "../../data/header/centered.json"
+import basic from "../../data/header/nav-basic.json"
+import centered from "../../data/header/nav-centered.json"
 
 const Header = () => {
     const [style, setStyle] = useState('Basic');
@@ -94,7 +94,9 @@ const Header = () => {
             </div >
             <Typography variant="subtitle1">Preview</Typography>
 
-            <div className="mt-4 mb-6 border-2 w-[95%] h-14 overflow-hidden">
+            <div className="my-6 h-14 scale-95" style={{
+                "marginLeft": "-3%",
+            }}>
                 {header}
             </div>
 

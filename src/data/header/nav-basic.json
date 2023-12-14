@@ -8,16 +8,15 @@
                     "display": "flex",
                     "position": "fixed",
                     "zIndex": 10,
+                    "paddingTop": "0.5rem",
+                    "paddingBottom": "0.5rem",
                     "paddingLeft": "3.5rem",
                     "paddingRight": "3.5rem",
+                    "marginTop": "-1.25rem",
                     "justifyContent": "space-between",
                     "alignItems": "center",
                     "width": "100%",
-                    "backgroundColor": "#ffffff",
-                    "boxShadow": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-                    ":hover": {
-                        "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-                    }
+                    "backgroundColor": "#ffffff"
                 },
                 "children": [
                     {
@@ -33,7 +32,7 @@
                                 {
                                     "type": "img",
                                     "props": {
-                                        "src": "/src/assets/images/logo.webp",
+                                        "src": "https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp",
                                         "alt": "logo",
                                         "style": {
                                             "padding": "0.5rem",
@@ -65,18 +64,14 @@
                                 "alignItems": "center",
                                 "fontSize": "1.125rem",
                                 "lineHeight": "1.75rem",
-                                "fontWeight": 500
+                                "fontWeight": 500,
+                                "gap": "25px"
                             },
                             "children": [
                                 {
                                     "type": "a",
                                     "props": {
                                         "href": "#",
-                                        "style": {
-                                            ":hover": {
-                                                "color": "#E50914"
-                                            }
-                                        },
                                         "children": "Home"
                                     }
                                 },
@@ -84,11 +79,6 @@
                                     "type": "a",
                                     "props": {
                                         "href": "#about",
-                                        "style": {
-                                            ":hover": {
-                                                "color": "#E50914"
-                                            }
-                                        },
                                         "children": "About"
                                     }
                                 },
@@ -96,11 +86,6 @@
                                     "type": "a",
                                     "props": {
                                         "href": "#services",
-                                        "style": {
-                                            ":hover": {
-                                                "color": "#E50914"
-                                            }
-                                        },
                                         "children": "Services"
                                     }
                                 },
@@ -108,11 +93,6 @@
                                     "type": "a",
                                     "props": {
                                         "href": "#contact",
-                                        "style": {
-                                            ":hover": {
-                                                "color": "#E50914"
-                                            }
-                                        },
                                         "children": "Contact Us"
                                     }
                                 }
