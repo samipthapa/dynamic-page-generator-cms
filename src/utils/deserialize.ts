@@ -9,6 +9,8 @@ import { IoLocation } from "react-icons/io5"
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import Slider from "react-slick";
+
 
 const componentMap = {
     IoLogoYoutube,
@@ -21,7 +23,8 @@ const componentMap = {
     IoLocation,
     FaLocationDot,
     FaPhoneAlt,
-    MdEmail
+    MdEmail,
+    Slider
 };
 
 
@@ -43,6 +46,7 @@ const deserialize = (data) => {
     }
 
     const elementType = componentMap[type] || type;
+    console.log(elementType)
 
     const jsxElement = React.createElement(elementType, props, children);
 
