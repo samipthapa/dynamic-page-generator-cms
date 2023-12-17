@@ -25,8 +25,8 @@ const SideBar: React.FC<Props> = ({ selectedItem, handleSelected }) => {
     const [open, setOpen] = React.useState(false);
 
     const sideBarContents = [
-        { name: 'Components', icon: open ? <ExpandLess /> : <KeyboardArrowRight /> },
         { name: 'Preview', icon: <LaptopMac /> },
+        { name: 'Components', icon: open ? <ExpandLess /> : <KeyboardArrowRight /> },
         { name: 'Logout', icon: <Logout /> },
     ]
 
@@ -43,7 +43,7 @@ const SideBar: React.FC<Props> = ({ selectedItem, handleSelected }) => {
         else {
             setOpen(false);
         }
-        handleSelected(itemName === 'Components' ? '' : itemName)
+        handleSelected(itemName === 'Components' ? selectedItem : itemName)
 
     };
 

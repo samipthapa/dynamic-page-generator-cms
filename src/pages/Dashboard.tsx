@@ -7,6 +7,7 @@ import HeroSection from "../components/sideBar/HeroSection"
 import SliderSection from "../components/sideBar/SliderSection"
 import DetailSection from "../components/sideBar/DetailSection"
 import ContactSection from "../components/sideBar/ContactSection"
+import Preview from "../components/sideBar/Preview"
 import Tiptap from "../components/Tiptap"
 
 const Dashboard = () => {
@@ -30,6 +31,8 @@ const Dashboard = () => {
                 return <DetailSection />
             case "Contact Section":
                 return <ContactSection />
+            case "Preview":
+                return <Preview />
             default:
                 return null
         }
