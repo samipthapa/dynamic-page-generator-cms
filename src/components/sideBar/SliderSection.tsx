@@ -3,10 +3,11 @@ import slider from "../../data/slider-section/slider.json"
 import deserialize from "../../utils/deserialize"
 import Slider from "react-slick"
 import reactElementToJSXString from "react-element-to-jsx-string"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const SliderSection = () => {
     let sliderSection = deserialize(slider)
-    console.log(reactElementToJSXString(sliderSection))
 
     return (
         <div className="w-full">
@@ -24,6 +25,7 @@ const SliderSection = () => {
                 />
             </div>
         </div>
+
     )
 }
 
