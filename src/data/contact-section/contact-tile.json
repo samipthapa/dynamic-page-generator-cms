@@ -1,262 +1,272 @@
 {
-    "type": "div",
-    "props": {
-        "style": {
-            "paddingTop": "6rem",
-            "height": "100vh"
-        },
-        "id": "contact",
-        "children": [
+  "type": "div",
+  "props": {
+    "id": "contact-section",
+    "style": {
+      "paddingTop": "6rem",
+      "height": "100vh"
+    },
+    "children": [
+      {
+        "type": "div",
+        "props": {
+          "children": {
+            "type": "h1",
+            "props": {
+              "id": "welcomeheading",
+              "style": {
+                "fontSize": "3rem",
+                "lineHeight": "1",
+                "fontWeight": "600",
+                "textAlign": "center",
+                "textTransform": "capitalize",
+                "color": "#e50914"
+              },
+              "children": "Contact us"
+            }
+          }
+        }
+      },
+      {
+        "type": "div",
+        "props": {
+          "style": {
+            "display": "flex",
+            "paddingLeft": "6rem",
+            "paddingRight": "6rem",
+            "paddingTop": "8rem",
+            "justifyContent": "space-evenly",
+            "alignItems": "center"
+          },
+          "children": [
             {
-                "type": "div",
-                "props": {
-                    "children": {
-                        "type": "h1",
+              "type": "div",
+              "props": {
+                "style": {
+                  "display": "flex",
+                  "padding": "1.5rem",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "borderRadius": "0.375rem",
+                  "width": "18rem",
+                  "height": "13rem",
+                  "backgroundColor": "#ffffff",
+                  "cursor": "pointer",
+                  "userSelect": "none",
+                  "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                },
+                "children": [
+                  {
+                    "type": "h1",
+                    "props": {
+                      "style": {
+                        "color": "#e50914"
+                      },
+                      "children": {
+                        "type": "FaLocationDot",
                         "props": {
-                            "style": {
-                                "fontSize": "3rem",
-                                "lineHeight": "1",
-                                "fontWeight": "600",
-                                "textAlign": "center",
-                                "textTransform": "capitalize",
-                                "color": "#e50914"
-                            },
-                            "children": "Contact us"
+                          "size": 50
                         }
+                      }
                     }
-                }
+                  },
+                  {
+                    "type": "h1",
+                    "props": {
+                      "id": "officeheading",
+                      "style": {
+                        "paddingTop": "1.25rem",
+                        "paddingBottom": "0.5rem",
+                        "fontSize": "1.5rem",
+                        "lineHeight": "2rem",
+                        "fontWeight": "700",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "office"
+                    }
+                  },
+                  {
+                    "type": "h2",
+                    "props": {
+                      "id": "address1",
+                      "style": {
+                        "fontSize": "1.125rem",
+                        "lineHeight": "1.75rem",
+                        "fontWeight": "500",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "Jaya Bageshwori Road"
+                    }
+                  },
+                  {
+                    "type": "h2",
+                    "props": {
+                      "id": "address2",
+                      "style": {
+                        "fontSize": "1.125rem",
+                        "lineHeight": "1.75rem",
+                        "fontWeight": "500",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "Sifal-8, kathmandu 44600"
+                    }
+                  }
+                ]
+              }
             },
             {
-                "type": "div",
-                "props": {
-                    "style": {
-                        "display": "flex",
-                        "paddingLeft": "6rem",
-                        "paddingRight": "6rem",
-                        "paddingTop": "8rem",
-                        "justifyContent": "space-evenly",
-                        "alignItems": "center"
-                    },
-                    "children": [
-                        {
-                            "type": "div",
-                            "props": {
-                                "style": {
-                                    "display": "flex",
-                                    "padding": "1.5rem",
-                                    "flexDirection": "column",
-                                    "alignItems": "center",
-                                    "borderRadius": "0.375rem",
-                                    "width": "18rem",
-                                    "height": "13rem",
-                                    "backgroundColor": "#ffffff",
-                                    "cursor": "pointer",
-                                    "userSelect": "none",
-                                    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-                                },
-                                "children": [
-                                    {
-                                        "type": "h1",
-                                        "props": {
-                                            "style": {
-                                                "color": "#e50914"
-                                            },
-                                            "children": {
-                                                "type": "FaLocationDot",
-                                                "props": {
-                                                    "size": 50
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "type": "h1",
-                                        "props": {
-                                            "style": {
-                                                "paddingTop": "1.25rem",
-                                                "paddingBottom": "0.5rem",
-                                                "fontSize": "1.5rem",
-                                                "lineHeight": "2rem",
-                                                "fontWeight": "700",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "office"
-                                        }
-                                    },
-                                    {
-                                        "type": "h2",
-                                        "props": {
-                                            "style": {
-                                                "fontSize": "1.125rem",
-                                                "lineHeight": "1.75rem",
-                                                "fontWeight": "500",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "Jaya Bageshwori Road"
-                                        }
-                                    },
-                                    {
-                                        "type": "h2",
-                                        "props": {
-                                            "style": {
-                                                "fontSize": "1.125rem",
-                                                "lineHeight": "1.75rem",
-                                                "fontWeight": "500",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "Sifal-8, kathmandu 44600"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "div",
-                            "props": {
-                                "style": {
-                                    "display": "flex",
-                                    "padding": "1.25rem",
-                                    "flexDirection": "column",
-                                    "alignItems": "center",
-                                    "borderRadius": "0.375rem",
-                                    "width": "18rem",
-                                    "height": "13rem",
-                                    "backgroundColor": "#ffffff",
-                                    "cursor": "pointer",
-                                    "userSelect": "none",
-                                    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-                                },
-                                "children": [
-                                    {
-                                        "type": "h1",
-                                        "props": {
-                                            "style": {
-                                                "color": "#e50914"
-                                            },
-                                            "children": {
-                                                "type": "FaPhoneAlt",
-                                                "props": {
-                                                    "size": 50
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "type": "h1",
-                                        "props": {
-                                            "style": {
-                                                "paddingTop": "1.25rem",
-                                                "paddingBottom": "0.5rem",
-                                                "fontSize": "1.5rem",
-                                                "lineHeight": "2rem",
-                                                "fontWeight": "700",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "phone number"
-                                        }
-                                    },
-                                    {
-                                        "type": "h2",
-                                        "props": {
-                                            "style": {
-                                                "fontSize": "1.125rem",
-                                                "lineHeight": "1.75rem",
-                                                "fontWeight": "500",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "+977 xxx xxx xxxx"
-                                        }
-                                    },
-                                    {
-                                        "type": "h2",
-                                        "props": {
-                                            "style": {
-                                                "fontSize": "1.125rem",
-                                                "lineHeight": "1.75rem",
-                                                "fontWeight": "500",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "+1 xxx xxx"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "div",
-                            "props": {
-                                "style": {
-                                    "display": "flex",
-                                    "padding": "1.25rem",
-                                    "flexDirection": "column",
-                                    "alignItems": "center",
-                                    "borderRadius": "0.375rem",
-                                    "width": "18rem",
-                                    "height": "13rem",
-                                    "backgroundColor": "#ffffff",
-                                    "cursor": "pointer",
-                                    "userSelect": "none",
-                                    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-                                },
-                                "children": [
-                                    {
-                                        "type": "h1",
-                                        "props": {
-                                            "style": {
-                                                "color": "#e50914"
-                                            },
-                                            "children": {
-                                                "type": "MdEmail",
-                                                "props": {
-                                                    "size": 50
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "type": "h1",
-                                        "props": {
-                                            "style": {
-                                                "paddingTop": "1.25rem",
-                                                "paddingBottom": "0.5rem",
-                                                "fontSize": "1.5rem",
-                                                "lineHeight": "2rem",
-                                                "fontWeight": "700",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "email"
-                                        }
-                                    },
-                                    {
-                                        "type": "h2",
-                                        "props": {
-                                            "style": {
-                                                "fontSize": "1.125rem",
-                                                "lineHeight": "1.75rem",
-                                                "fontWeight": "500",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "support@hamropatro.com"
-                                        }
-                                    },
-                                    {
-                                        "type": "h2",
-                                        "props": {
-                                            "style": {
-                                                "fontSize": "1.125rem",
-                                                "lineHeight": "1.75rem",
-                                                "fontWeight": "500",
-                                                "textTransform": "capitalize"
-                                            },
-                                            "children": "example123@gmail.com"
-                                        }
-                                    }
-                                ]
-                            }
+              "type": "div",
+              "props": {
+                "style": {
+                  "display": "flex",
+                  "padding": "1.25rem",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "borderRadius": "0.375rem",
+                  "width": "18rem",
+                  "height": "13rem",
+                  "backgroundColor": "#ffffff",
+                  "cursor": "pointer",
+                  "userSelect": "none",
+                  "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                },
+                "children": [
+                  {
+                    "type": "h1",
+                    "props": {
+                      "style": {
+                        "color": "#e50914"
+                      },
+                      "children": {
+                        "type": "FaPhoneAlt",
+                        "props": {
+                          "size": 50
                         }
-                    ]
-                }
+                      }
+                    }
+                  },
+                  {
+                    "type": "h1",
+                    "props": {
+                      "id": "phoneheading",
+                      "style": {
+                        "paddingTop": "1.25rem",
+                        "paddingBottom": "0.5rem",
+                        "fontSize": "1.5rem",
+                        "lineHeight": "2rem",
+                        "fontWeight": "700",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "phone number"
+                    }
+                  },
+                  {
+                    "type": "h2",
+                    "props": {
+                      "id": "phone1",
+                      "style": {
+                        "fontSize": "1.125rem",
+                        "lineHeight": "1.75rem",
+                        "fontWeight": "500",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "+977 xxx xxx xxxx"
+                    }
+                  },
+                  {
+                    "type": "h2",
+                    "props": {
+                      "id": "phone2",
+                      "style": {
+                        "fontSize": "1.125rem",
+                        "lineHeight": "1.75rem",
+                        "fontWeight": "500",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "+1 xxx xxx"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "div",
+              "props": {
+                "style": {
+                  "display": "flex",
+                  "padding": "1.25rem",
+                  "flexDirection": "column",
+                  "alignItems": "center",
+                  "borderRadius": "0.375rem",
+                  "width": "18rem",
+                  "height": "13rem",
+                  "backgroundColor": "#ffffff",
+                  "cursor": "pointer",
+                  "userSelect": "none",
+                  "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                },
+                "children": [
+                  {
+                    "type": "h1",
+                    "props": {
+                      "style": {
+                        "color": "#e50914"
+                      },
+                      "children": {
+                        "type": "MdEmail",
+                        "props": {
+                          "size": 50
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "h1",
+                    "props": {
+                      "id": "emailheading",
+                      "style": {
+                        "paddingTop": "1.25rem",
+                        "paddingBottom": "0.5rem",
+                        "fontSize": "1.5rem",
+                        "lineHeight": "2rem",
+                        "fontWeight": "700",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "email"
+                    }
+                  },
+                  {
+                    "type": "h2",
+                    "props": {
+                      "id": "email1",
+                      "style": {
+                        "fontSize": "1.125rem",
+                        "lineHeight": "1.75rem",
+                        "fontWeight": "500",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "support@hamropatro.com"
+                    }
+                  },
+                  {
+                    "type": "h2",
+                    "props": {
+                      "id": "email2",
+                      "style": {
+                        "fontSize": "1.125rem",
+                        "lineHeight": "1.75rem",
+                        "fontWeight": "500",
+                        "textTransform": "capitalize"
+                      },
+                      "children": "example123@gmail.com"
+                    }
+                  }
+                ]
+              }
             }
-        ]
-    }
+          ]
+        }
+      }
+    ]
+  }
 }
