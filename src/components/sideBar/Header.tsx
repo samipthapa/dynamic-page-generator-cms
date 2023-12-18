@@ -8,27 +8,55 @@ import TextField from "@mui/material/TextField";
 import { HexColorPicker } from "react-colorful";
 import InputAdornment from "@mui/material/InputAdornment";
 import deserialize from "../../utils/deserialize";
-import basic from "../../data/header/nav-basic.json";
-import centered from "../../data/header/nav-centered.json";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import rgbToHex from "../../utils/rgbToHex";
-import { AddCardOutlined } from "@mui/icons-material";
 import TextDialog from "../common/TextDialog";
+import { updateNavSection } from "../../grpcRequests/NavSection";
+import { serialize } from "../../utils/serialize";
+import parse from "html-react-parser";
 
 const Header = () => {
-  const [style, setStyle] = useState("Basic");
+  const [style, setStyle] = useState("");
   const [bgColor, setBgColor] = useState("");
-  const [text, setText] = useState("");
   const [textColor, setTextColor] = useState("");
   const [image, setImage] = useState("");
+  const [header, setHeader] = useState();
 
-  let header;
+  useEffect(() => {
+    setHeader();
+    setDetail(initialDetail);
+    setValue("");
+    setImage("");
+    setBgColor("");
+    setTextColor("");
+  }, [style]);
 
-  if (style === "Basic") {
-    header = deserialize(basic);
-  } else if (style === "Centered") {
-    header = deserialize(centered);
-  }
+  useEffect(() => {
+    const response = updateNavSection("5")
+    response
+      .then((res) => {
+        console.log(res.response)
+        if (style == "") {
+          if (res.response.active == "Basic") {
+            setHeader(deserialize(JSON.parse(res.response.basic)))
+          }
+          else if (res.response.active == "Centered") {
+            setHeader(deserialize(JSON.parse(res.response.centered)))
+          }
+          setStyle(res.response.active)
+        } else {
+          if (style == "Basic") {
+            setHeader(deserialize(JSON.parse(res.response.basic)))
+          }
+          else if (style == "Centered") {
+            setHeader(deserialize(JSON.parse(res.response.centered)))
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [style])
 
   function cloudinary(image: any) {
     const data = new FormData();
@@ -65,31 +93,36 @@ const Header = () => {
   };
 
   useEffect(() => {
+    if (!header) return
+    if (image == "") return
     const Logo = document.getElementById("logo") as HTMLImageElement;
     Logo.src = image;
-  }, [image]);
+  }, [image, header]);
 
   useEffect(() => {
+    if (!header) return
     if (bgColor == "") {
       setBgColor(
         rgbToHex(
-          document.getElementById("navBackground")!.style.backgroundColor
+          document.getElementById("header-section")!.style.backgroundColor
         )
       );
     } else {
-      document.getElementById("navBackground")!.style.backgroundColor = bgColor;
+      document.getElementById("header-section")!.style.backgroundColor = bgColor;
     }
-  }, [bgColor]);
+  }, [bgColor, header]);
 
-  //   useEffect(() => {
-  //     if (textColor == "") {
-  //       setTextColor(rgbToHex(document.getElementById("navItems")!.style.color));
-  //       setText(document.getElementById("navItems")!.innerHTML);
-  //     } else {
-  //       document.getElementById("navItems")!.style.color = textColor;
-  //       document.getElementById("navItems")!.innerText = text;
-  //     }
-  //   }, [textColor, text]);
+  useEffect(() => {
+    if (!header) return
+    if (textColor == "") {
+      setTextColor(rgbToHex(document.getElementById("navHeader")!.style.color));
+    } else {
+      const textElement = document.getElementsByClassName("header-text")
+      for (let i = 0; i < textElement.length; i++) {
+        textElement[i].style.color = textColor
+      }
+    }
+  }, [textColor, header]);
 
   const initialDetail = {
     navHeader: "",
@@ -103,11 +136,7 @@ const Header = () => {
   const [detail, setDetail] = useState(initialDetail);
 
   useEffect(() => {
-    setDetail(initialDetail);
-    setValue("");
-  }, [style]);
-
-  useEffect(() => {
+    if (!header) return
     Object.keys(detail).forEach((item: string) => {
       if (detail[item] == "") {
         setDetail({
@@ -118,7 +147,7 @@ const Header = () => {
         document.getElementById(item)!.innerHTML = detail[item];
       }
     });
-  }, [detail]);
+  }, [detail, header]);
 
   function handleClick(id: string) {
     setValue(id);
@@ -165,7 +194,7 @@ const Header = () => {
               startAdornment: (
                 <InputAdornment position="start">
                   <div
-                    className="rounded-full w-4 h-4"
+                    className="rounded-full w-4 h-4 border-2"
                     style={{
                       backgroundColor: bgColor,
                     }}
@@ -189,7 +218,7 @@ const Header = () => {
               startAdornment: (
                 <InputAdornment position="start">
                   <div
-                    className="rounded-full w-4 h-4"
+                    className="rounded-full w-4 h-4 border-2"
                     style={{
                       backgroundColor: textColor,
                     }}
@@ -267,7 +296,24 @@ const Header = () => {
         field={detail}
       />
 
-      <CustomButton buttonText="Save Changes" />
+      <CustomButton buttonText="Save Changes"
+        handleClick={() => {
+          let response
+          const json = serialize(parse(document.getElementById("header-section")?.outerHTML))
+          if (style == "Basic") {
+            response = updateNavSection("5", { basic: json, active: style })
+          } else if (style == "Centered") {
+            response = updateNavSection("5", { centered: json, active: style })
+          }
+          response
+            ?.then((res) => {
+              console.log(res)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }}
+      />
     </div>
   );
 };

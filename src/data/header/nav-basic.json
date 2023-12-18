@@ -1,115 +1,128 @@
 {
-  "type": "nav",
+  "type": "div",
   "props": {
-    "children": {
-      "type": "nav",
-      "props": {
-        "id": "navBackground",
-        "style": {
-          "display": "flex",
-          "position": "fixed",
-          "zIndex": 10,
-          "paddingTop": "0.5rem",
-          "paddingBottom": "0.5rem",
-          "paddingLeft": "3.5rem",
-          "paddingRight": "3.5rem",
-          "marginTop": "-1.25rem",
-          "justifyContent": "space-between",
-          "alignItems": "center",
-          "width": "100%",
-          "backgroundColor": "#ffffff"
-        },
-        "children": [
-          {
-            "type": "a",
-            "props": {
-              "href": "#",
-              "style": {
-                "display": "flex",
-                "alignItems": "center",
-                "cursor": "pointer"
-              },
-              "children": [
-                {
-                  "type": "img",
-                  "props": {
-                    "id": "logo",
-                    "src": "https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp",
-                    "alt": "logo",
-                    "style": {
-                      "padding": "0.5rem",
-                      "borderRadius": "0.25rem",
-                      "width": "4rem",
-                      "height": "4rem"
-                    }
-                  }
-                },
-                {
-                  "type": "h1",
-                  "props": {
-                    "id": "navHeader",
-                    "style": {
-                      "fontWeight": 700,
-                      "textTransform": "uppercase"
-                    },
-                    "children": "hamro patro"
-                  }
-                }
-              ]
-            }
+    "id": "header-section",
+    "style": {
+      "display": "flex",
+      "position": "fixed",
+      "zIndex": 10,
+      "paddingTop": "0.5rem",
+      "paddingBottom": "0.5rem",
+      "paddingLeft": "3.5rem",
+      "paddingRight": "3.5rem",
+      "marginTop": "-1.25rem",
+      "justifyContent": "space-between",
+      "alignItems": "center",
+      "width": "100%",
+      "backgroundColor": "#F5F5F5"
+    },
+    "children": [
+      {
+        "type": "a",
+        "props": {
+          "href": "#",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "cursor": "pointer"
           },
-          {
-            "type": "nav",
-            "props": {
-              "id": "navItems",
-              "style": {
-                "display": "flex",
-                "justifyContent": "space-between",
-                "alignItems": "center",
-                "fontSize": "1.125rem",
-                "lineHeight": "1.75rem",
-                "fontWeight": 500,
-                "gap": "25px",
-                "color": "#000000"
-              },
-              "children": [
-                {
-                  "type": "a",
-                  "props": {
-                    "id": "navHome",
-                    "href": "#",
-                    "children": "Home"
-                  }
-                },
-                {
-                  "type": "a",
-                  "props": {
-                    "id": "navAbout",
-                    "href": "#about",
-                    "children": "About"
-                  }
-                },
-                {
-                  "type": "a",
-                  "props": {
-                    "id": "navServices",
-                    "href": "#services",
-                    "children": "Services"
-                  }
-                },
-                {
-                  "type": "a",
-                  "props": {
-                    "id": "navContact",
-                    "href": "#contact",
-                    "children": "Contact Us"
-                  }
+          "children": [
+            {
+              "type": "img",
+              "props": {
+                "id": "logo",
+                "src": "https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp",
+                "alt": "logo",
+                "style": {
+                  "padding": "0.5rem",
+                  "borderRadius": "0.25rem",
+                  "width": "4rem",
+                  "height": "4rem"
                 }
-              ]
+              }
+            },
+            {
+              "type": "h1",
+              "props": {
+                "id": "navHeader",
+                "className": "header-text",
+                "style": {
+                  "fontWeight": 700,
+                  "textTransform": "uppercase",
+                  "color": "#000000"
+                },
+                "children": "hamro patro"
+              }
             }
-          }
-        ]
+          ]
+        }
+      },
+      {
+        "type": "nav",
+        "props": {
+          "id": "navItems",
+          "style": {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "alignItems": "center",
+            "fontSize": "1.125rem",
+            "lineHeight": "1.75rem",
+            "fontWeight": 500,
+            "gap": "25px",
+            "color": "#000000"
+          },
+          "children": [
+            {
+              "type": "a",
+              "props": {
+                "id": "navHome",
+                "className": "header-text",
+                "style": {
+                  "color": "#000000"
+                },
+                "href": "#",
+                "children": "Home"
+              }
+            },
+            {
+              "type": "a",
+              "props": {
+                "id": "navAbout",
+                "className": "header-text",
+                "style": {
+                  "color": "#000000"
+                },
+                "href": "#about",
+                "children": "About"
+              }
+            },
+            {
+              "type": "a",
+              "props": {
+                "id": "navServices",
+                "className": "header-text",
+                "style": {
+                  "color": "#000000"
+                },
+                "href": "#services",
+                "children": "Services"
+              }
+            },
+            {
+              "type": "a",
+              "props": {
+                "id": "navContact",
+                "className": "header-text",
+                "style": {
+                  "color": "#000000"
+                },
+                "href": "#contact",
+                "children": "Contact Us"
+              }
+            }
+          ]
+        }
       }
-    }
+    ]
   }
 }

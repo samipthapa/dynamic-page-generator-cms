@@ -1,7 +1,7 @@
 {
   "type": "div",
   "props": {
-    "id": "navBackground",
+    "id": "header-section",
     "style": {
       "background": "#F5F5F5",
       "display": "flex",
@@ -64,12 +64,14 @@
               "type": "a",
               "props": {
                 "id": "navHeader",
+                "className": "header-text",
                 "href": "#",
                 "style": {
                   "fontSize": "1.125rem",
                   "lineHeight": "1.75rem",
                   "fontWeight": 700,
-                  "textTransform": "uppercase"
+                  "textTransform": "uppercase",
+                  "color": "#000000"
                 },
                 "children": "hamro patro"
               }
@@ -93,6 +95,10 @@
                     "type": "a",
                     "props": {
                       "id": "navHome",
+                      "className": "header-text",
+                      "style": {
+                        "color": "#000000"
+                      },
                       "href": "#",
                       "children": "Home"
                     }
@@ -101,6 +107,10 @@
                     "type": "a",
                     "props": {
                       "id": "navAbout",
+                      "className": "header-text",
+                      "style": {
+                        "color": "#000000"
+                      },
                       "href": "#about",
                       "children": "About"
                     }
@@ -109,6 +119,10 @@
                     "type": "a",
                     "props": {
                       "id": "navServices",
+                      "className": "header-text",
+                      "style": {
+                        "color": "#000000"
+                      },
                       "href": "#services",
                       "children": "Services"
                     }
@@ -117,6 +131,10 @@
                     "type": "a",
                     "props": {
                       "id": "navContact",
+                      "className": "header-text",
+                      "style": {
+                        "color": "#000000"
+                      },
                       "href": "#contact",
                       "children": "Contact Us"
                     }
