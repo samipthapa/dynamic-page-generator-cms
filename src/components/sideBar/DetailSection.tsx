@@ -1,5 +1,3 @@
-import split from "../../data/detail-section/detail-split.json"
-import tile from "../../data/detail-section/detail-tile.json"
 import deserialize from "../../utils/deserialize"
 import CustomButton from "../common/CustomButton"
 import { Typography } from "@mui/material"
@@ -11,8 +9,9 @@ import {
 } from "@mui/material"
 import { useState, useEffect } from "react"
 import TextDialog from "../common/TextDialog"
-import reactElementToJSXString from "react-element-to-jsx-string"
-
+import { updateDetailSection } from "../../grpcRequests/DetailSection"
+import { serialize } from "../../utils/serialize"
+import parse from "html-react-parser"
 
 const DetailSection = () => {
     const initialDetail = {
@@ -26,24 +25,52 @@ const DetailSection = () => {
         "usersCount": "",
         "officesCount": ""
     } as { [key: string]: string }
-    const [style, setStyle] = useState('Split')
+    const [style, setStyle] = useState('')
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState('')
     const [detail, setDetail] = useState(initialDetail)
+    const [detailSection, setDetailSection] = useState()
 
-    let detailSection
+    // let detailSection
 
 
-    if (style == 'Split') {
-        detailSection = deserialize(split)
-    } else if (style == 'Tile') {
-        detailSection = deserialize(tile)
-        console.log(reactElementToJSXString(detailSection))
-    }
+    // if (style == 'Split') {
+    //     detailSection = deserialize(split)
+    // } else if (style == 'Tile') {
+    //     detailSection = deserialize(tile)
+    //     console.log(reactElementToJSXString(detailSection))
+    // }
 
     useEffect(() => {
+        setDetailSection()
         setDetail(initialDetail)
         setValue('')
+    }, [style])
+
+    useEffect(() => {
+        const response = updateDetailSection("8")
+        response
+            .then((res) => {
+                if (style == "") {
+                    if (res.response.active == "Tile") {
+                        setDetailSection(deserialize(JSON.parse(res.response.tile)))
+                    }
+                    else if (res.response.active == "Split") {
+                        setDetailSection(deserialize(JSON.parse(res.response.split)))
+                    }
+                    setStyle(res.response.active)
+                } else {
+                    if (style == "Tile") {
+                        setDetailSection(deserialize(JSON.parse(res.response.tile)))
+                    }
+                    else if (style == "Split") {
+                        setDetailSection(deserialize(JSON.parse(res.response.split)))
+                    }
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }, [style])
 
     const tileOnly = [
@@ -51,6 +78,7 @@ const DetailSection = () => {
     ]
 
     useEffect(() => {
+        if (!detailSection) return;
         Object.keys(detail).forEach((item: string) => {
             if (item == "about" && style == "Tile") return
             if (tileOnly.includes(item) && style == "Split") return
@@ -61,7 +89,7 @@ const DetailSection = () => {
                 document.getElementById(item)!.innerHTML = detail[item]
             }
         })
-    }, [detail])
+    }, [detail, detailSection])
 
     function handleClick(id: string) {
         setValue(id);
@@ -125,6 +153,20 @@ const DetailSection = () => {
             <div className="mb-4">
                 <CustomButton buttonText="Save Changes"
                     handleClick={() => {
+                        let response
+                        const json = serialize(parse(document.getElementById("detail-section")?.outerHTML))
+                        if (style == "Tile") {
+                            response = updateDetailSection("8", { tile: json, active: style })
+                        } else if (style == "Split") {
+                            response = updateDetailSection("8", { split: json, active: style })
+                        }
+                        response
+                            ?.then((res) => {
+                                console.log(res)
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
 
                     }}
                 />

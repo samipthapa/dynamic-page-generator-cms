@@ -1,7 +1,7 @@
 {
     "type": "div",
     "props": {
-        "id": "detail-split",
+        "id": "detail-section",
         "style": {
             "paddingTop": "6rem",
             "paddingBottom": "6rem",

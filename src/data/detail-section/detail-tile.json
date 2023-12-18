@@ -1,7 +1,7 @@
 {
     "type": "div",
     "props": {
-        "id": "about",
+        "id": "detail-section",
         "style": {
             "display": "flex",
             "paddingTop": "6rem",
