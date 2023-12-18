@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example";
+
+package com.example;
+
+service FooterService {
+  rpc UpdateJsonData(JsonDataUpdateRequest) returns (JsonDataResponse);
+  rpc GetJsonData(JsonDataRequest) returns (JsonDataResponse);
+}
+
+message JsonDataRequest {
+  // Use id for GetJsonData
+  int64 id = 1;
+}
+
+message JsonData {
+  int64 id = 1;
+  string jsonDataString = 2;
+}
+
+message JsonDataResponse {
+  bool success = 1;
+  string message = 2;
+  JsonData jsonData = 3;
+}
+
+message JsonDataUpdateRequest {
+  // Use id for UpdateJsonData
+  int64 id = 1;
+  string updatedJsonData = 2;
+}
