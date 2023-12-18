@@ -1,6 +1,7 @@
 {
   "type": "div",
   "props": {
+    "id": "contact-section",
     "style": {
       "paddingTop": "6rem",
       "height": "100vh"

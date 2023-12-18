@@ -1,10 +1,10 @@
 {
   "type": "div",
   "props": {
+    "id": "contact-section",
     "style": {
       "height": "100vh"
     },
-    "id": "contact",
     "children": {
       "type": "div",
       "props": {

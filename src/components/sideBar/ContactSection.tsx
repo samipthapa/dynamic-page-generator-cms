@@ -6,24 +6,48 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import tile from "../../data/contact-section/contact-tile.json";
-import centered from "../../data/contact-section//contact-centered.json";
 import { Typography } from "@mui/material";
 import TextDialog from "../common/TextDialog";
 import CustomButton from "../common/CustomButton";
+import { updateContactSection } from "../../grpcRequests/ContactSection"
+import parse from "html-react-parser";
+import { serialize } from "../../utils/serialize";
 
 const ContactSection = () => {
-  const [style, setStyle] = useState("Tile");
+  const [style, setStyle] = useState("");
+  const [contact, setContact] = useState();
 
-  // let contactSection = deserialize(tile)
+  useEffect(() => {
+    setContact();
+    setDetail(initialContact);
+    setValue("");
+  }, [style]);
 
-  let contactSection;
-
-  if (style == "Tile") {
-    contactSection = deserialize(tile);
-  } else if (style == "Centered") {
-    contactSection = deserialize(centered);
-  }
+  useEffect(() => {
+    const response = updateContactSection("5")
+    response
+      .then((res) => {
+        if (style == "") {
+          if (res.response.active == "Tile") {
+            setContact(deserialize(JSON.parse(res.response.tile)))
+          }
+          else if (res.response.active == "Centered") {
+            setContact(deserialize(JSON.parse(res.response.centered)))
+          }
+          setStyle(res.response.active)
+        } else {
+          if (style == "Tile") {
+            setContact(deserialize(JSON.parse(res.response.tile)))
+          }
+          else if (style == "Centered") {
+            setContact(deserialize(JSON.parse(res.response.centered)))
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [style])
 
   const initialContact = {
     welcomeheading: "",
@@ -41,11 +65,6 @@ const ContactSection = () => {
   const [value, setValue] = useState("");
   const [detail, setDetail] = useState(initialContact);
 
-  useEffect(() => {
-    setDetail(initialContact);
-    setValue("");
-  }, [style]);
-
   const tileOnly = [
     "officeheading",
     "phoneheading",
@@ -56,6 +75,7 @@ const ContactSection = () => {
   ];
 
   useEffect(() => {
+    if (!contact) return;
     Object.keys(detail).forEach((item: string) => {
       if (tileOnly.includes(item) && style == "Centered") return;
 
@@ -68,7 +88,7 @@ const ContactSection = () => {
         document.getElementById(item)!.innerHTML = detail[item];
       }
     });
-  }, [detail]);
+  }, [detail, contact]);
 
   function hanldeClick(id: string) {
     setValue(id);
@@ -127,7 +147,7 @@ const ContactSection = () => {
           marginBottom: "-11%",
         }}
       >
-        {contactSection}
+        {contact}
       </div>
       <TextDialog
         open={open}
@@ -140,7 +160,23 @@ const ContactSection = () => {
       />
 
       <div className="mb-4">
-        <CustomButton buttonText="Save Changes" handleClick={() => {}} />
+        <CustomButton buttonText="Save Changes" handleClick={() => {
+          let response
+          const json = serialize(parse(document.getElementById("contact-section")?.outerHTML))
+          if (style == "Tile") {
+            response = updateContactSection("5", { tile: json, active: style })
+          } else if (style == "Centered") {
+            response = updateContactSection("5", { centered: json, active: style })
+          }
+          response
+            ?.then((res) => {
+              console.log(res)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+
+        }} />
       </div>
     </div>
   );
