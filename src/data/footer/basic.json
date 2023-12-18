@@ -5,7 +5,7 @@
         "children": {
             "type": "div",
             "props": {
-                "id": "body",
+                "id": "footer-body",
                 "style": {
                     "alignItems": "center",
                     "backgroundColor": "#f69e9e",
@@ -41,17 +41,14 @@
                                 {
                                     "type": "div",
                                     "props": {
-                                        "id": "footer-text",
-                                        "style": {
-                                            "color": "#000000"
-                                        },
                                         "children": [
                                             {
                                                 "type": "span",
                                                 "props": {
-                                                    "id": "company",
+                                                    "id": "footer-text",
                                                     "style": {
-                                                        "cursor": "text"
+                                                        "cursor": "text",
+                                                        "color": "#000000"
                                                     },
                                                     "children": [
                                                         "© Hamro Patro 2023, All Rights Reserved |",

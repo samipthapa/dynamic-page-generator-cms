@@ -8,69 +8,73 @@ import TextField from '@mui/material/TextField'
 import { HexColorPicker } from "react-colorful"
 import InputAdornment from '@mui/material/InputAdornment'
 import deserialize from "../../utils/deserialize"
-import basic from "../../data/footer/basic.json"
-import centered from "../../data/footer/centered.json"
+// import basic from "../../data/footer/basic.json"
+// import centered from "../../data/footer/centered.json"
 import reactElementToJSXString from "react-element-to-jsx-string"
 import { useEffect } from "react"
 import TextDialog from "../common/TextDialog"
-import LinkDialog from "../common/LinkDialog"
 import { serialize } from "../../utils/serialize"
+import rgbToHex from "../../utils/rgbToHex"
+import { updateFooterSection } from "../../grpcRequests/Footer"
+import parse from "html-react-parser";
 
-function rgbToHex(rgb) {
-    // Extract the RGB values
-    const rgbArray = rgb.match(/\d+/g);
-
-    // Convert each component to a hexadecimal value
-    const hexArray = rgbArray.map(component => {
-        const hex = parseInt(component).toString(16);
-        return hex.length === 1 ? "0" + hex : hex;
-    });
-
-    // Combine the hexadecimal values
-    return "#" + hexArray.join('');
-}
 
 const Footer = () => {
-    const [style, setStyle] = useState('Basic');
+    const [style, setStyle] = useState('');
     const [textColor, setTextColor] = useState("");
     const [bgColor, setBgColor] = useState("")
     const [text, setText] = useState("")
     const [open, setOpen] = useState(false)
-    const [value, setValue] = useState("")
-    const [field, setField] = useState({
-        company: "",
-        facebook: ""
-    })
+    const [footer, setFooter] = useState()
 
-    let footer;
+    // let footer;
 
-    if (style === 'Basic') {
-        footer = deserialize(basic);
-    } else if (style === 'Centered') {
-        footer = deserialize(centered);
-    }
-
-    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // setText(e.target.value)
-        setField({
-            ...field,
-            [e.target.name]: e.target.value
-        })
-        if (value == "facebook") {
-            document.getElementById(`${value}`).href = e.target.value
-        }
-        document.getElementById(`${value}`).innerText = e.target.value
-    }
-
-    const handleClose = () => {
-        setOpen(false)
-    }
+    // if (style === 'Basic') {
+    //     footer = deserialize(basic);
+    // } else if (style === 'Centered') {
+    //     footer = deserialize(centered);
+    //     console.log(reactElementToJSXString(footer))
+    // }
 
     useEffect(() => {
+        setFooter();
+        setBgColor("")
+        setTextColor("")
+    }, [style])
+
+    useEffect(() => {
+        const response = updateFooterSection("12")
+        response
+            .then((res) => {
+                console.log(res.response)
+                if (style == "") {
+                    if (res.response.active == "Basic") {
+                        setFooter(deserialize(JSON.parse(res.response.basic)))
+                    }
+                    else if (res.response.active == "Centered") {
+                        setFooter(deserialize(JSON.parse(res.response.centered)))
+                    }
+                    setStyle(res.response.active)
+                } else {
+                    if (style == "Basic") {
+                        setFooter(deserialize(JSON.parse(res.response.basic)))
+                    }
+                    else if (style == "Centered") {
+                        setFooter(deserialize(JSON.parse(res.response.centered)))
+                    }
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [style])
+
+    useEffect(() => {
+        if (!footer) return;
         if (bgColor === "") {
-            setBgColor(rgbToHex(document.getElementById('body')?.style.backgroundColor))
+            setBgColor(rgbToHex(document.getElementById('footer-body')?.style.backgroundColor))
         } else {
-            document.getElementById('body').style.backgroundColor = bgColor;
+            document.getElementById('footer-body').style.backgroundColor = bgColor;
         }
 
         if (textColor === "") {
@@ -79,28 +83,19 @@ const Footer = () => {
             document.getElementById('footer-text').style.color = textColor;
 
         }
-    }, [bgColor, textColor])
+    }, [bgColor, textColor, footer])
 
     useEffect(() => {
+        if (!footer) return;
         if (text === "") {
-            setText(document.getElementById('company').innerText)
+            setText(document.getElementById('footer-text').innerText)
+        } else {
+            document.getElementById("footer-text")!.innerText = text
         }
-        setField({
-            ...field,
-            company: document.getElementById('company').innerText,
-            facebook: document.getElementById('facebook')?.getAttribute('href')
-        })
-    }, [])
+    }, [text, footer])
 
-    function handleClick(id: string) {
-        setValue(id);
-        setOpen(true);
-    }
-
-    let company = document.getElementById('company');
-    let facebook = document.getElementById('facebook');
-
-    company?.addEventListener('click', () => handleClick("company"));
+    let company = document.getElementById('footer-text');
+    company?.addEventListener('click', () => setOpen(true));
 
     return (
         <div>
@@ -129,7 +124,7 @@ const Footer = () => {
                         size="small"
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <div className="rounded-full w-4 h-4" style={{
+                                <div className="rounded-full w-4 h-4 border-2" style={{
                                     backgroundColor: bgColor
                                 }}>
 
@@ -153,7 +148,7 @@ const Footer = () => {
                         size="small"
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
-                                <div className="rounded-full w-4 h-4" style={{
+                                <div className="rounded-full w-4 h-4 border-2" style={{
                                     backgroundColor: textColor
                                 }}>
 
@@ -178,22 +173,27 @@ const Footer = () => {
 
             <TextDialog
                 open={open}
-                field={field}
-                handleTextChange={handleTextChange}
-                handleClose={handleClose}
-                value={value}
+                handleTextChange={(e) => setText(e.target.value)}
+                handleClose={() => setOpen(false)}
+                value={text}
             />
-
-            {/* <LinkDialog
-                open={open}
-                data={link}
-                handleTextChange={handleTextChange}
-                handleClose={handleClose}
-            /> */}
 
             <CustomButton
                 handleClick={() => {
-                    console.log(serialize(footer))
+                    let response
+                    const json = serialize(parse(document.getElementById("footer-section")?.outerHTML))
+                    if (style == "Basic") {
+                        response = updateFooterSection("12", { basic: json, active: style })
+                    } else if (style == "Centered") {
+                        response = updateFooterSection("12", { centered: json, active: style })
+                    }
+                    response
+                        ?.then((res) => {
+                            console.log(res)
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
                 }}
                 buttonText="Save Changes"
             />
