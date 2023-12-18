@@ -21,6 +21,9 @@ import { NavRequest } from "../generated/NavSectionService"
 import { FooterSectionServiceClient } from "../generated/FooterSectionService.client";
 import { FooterRequest } from "../generated/FooterSectionService";
 
+import { SliderSectionServiceClient } from "../generated/SliderSectionService.client";
+import { SliderRequest } from "../generated/SliderSectionService";
+
 const config = new GrpcWebFetchTransport({
   baseUrl: "http://192.168.28.121:8082",
 });
@@ -52,6 +55,10 @@ const NavReq = NavRequest.create();
 const FooterSectionClient = new FooterSectionServiceClient(config);
 const FooterSectionReq = FooterRequest.create();
 
+// Slider Request
+const SliderClient = new SliderSectionServiceClient(config);
+const SliderReq = SliderRequest.create();
+
 export {
   RegisterServiceClient,
   LogInServiceClient,
@@ -60,6 +67,7 @@ export {
   DetailClient,
   NavClient,
   FooterSectionClient,
+  SliderClient,
 
   RegisterReq,
   LogInReq,
@@ -68,4 +76,5 @@ export {
   DetailReq,
   NavReq,
   FooterSectionReq,
+  SliderReq,
 };
