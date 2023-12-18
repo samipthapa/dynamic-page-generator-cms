@@ -1,1 +1,1 @@
-npx protoc --proto_path ./src/proto ./src/proto/* --ts_out=./src/generated
+npx protoc --proto_path ./src/protos ./src/protos/* --ts_out=./src/generated

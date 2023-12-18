@@ -5,15 +5,24 @@ export function login(userName: string, password: string) {
   LogInReq.userName = userName;
   LogInReq.password = password;
 
-  return new Promise((resolve) => {
-    const call = LogInServiceClient.login(LogInReq);
-    call.response
+  // return new Promise((resolve) => {
+  //   const call = LogInServiceClient.login(LogInReq);
+  //   call.response
+  //     .then((res) => {
+  //       resolve(res);
+  //     })
+  //     .catch((err: string) => {
+  //       console.log("error", err);
+  //     });
+  // });
+
+  return new Promise((resolve, reject) => {
+    LogInServiceClient.login(LogInReq)
       .then((res) => {
-        console.log("response", res);
-        resolve(res);
+        resolve(res)
       })
-      .catch((err: string) => {
-        console.log("error", err);
+      .catch((err) => {
+        reject(err)
       });
   });
 }

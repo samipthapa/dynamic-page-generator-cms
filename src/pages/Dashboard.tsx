@@ -8,13 +8,19 @@ import SliderSection from "../components/sideBar/SliderSection"
 import DetailSection from "../components/sideBar/DetailSection"
 import ContactSection from "../components/sideBar/ContactSection"
 import Preview from "../components/sideBar/Preview"
-import Tiptap from "../components/Tiptap"
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+    const navigate = useNavigate();
+
     const [selectedItem, setSelectedItem] = useState('');
 
     const handleSelected = (itemName: string) => {
         setSelectedItem(itemName)
+    }
+
+    if (selectedItem == "Logout") {
+        navigate("/")
     }
 
     const renderComponent = () => {

@@ -1,8 +1,9 @@
+// login.proto
+
 syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "com.example";
-
 
 package com.example;
 
@@ -16,6 +17,7 @@ message LoginRequest {
 }
 
 message LoginReply {
-  string access_token = 1;
+  string access_token = 1;  // Corrected field name
   string userName = 2;
+  int64 userId = 3;
 }

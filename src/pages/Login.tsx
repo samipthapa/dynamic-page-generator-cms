@@ -45,7 +45,7 @@ function Login() {
       const response = login(user.username, user.password);
       response
         .then((res) => {
-          console.log("response", res);
+          console.log("response", res.response.userId.toString());
           navigate("/dashboard");
         })
         .catch((err) => {

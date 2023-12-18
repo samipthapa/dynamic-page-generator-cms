@@ -27,10 +27,13 @@ export async function updateHeroSection(id: string, options?: { split?: string, 
         if (active) HeroSectionReq.active = active;
     }
 
-    try {
-        const res = await HeroSectionClient.updateHeroSection(HeroSectionReq);
-        return res;
-    } catch (err) {
-        throw err;
-    }
+    return new Promise((resolve, reject) => {
+        HeroSectionClient.updateHeroSection(HeroSectionReq)
+            .then((res) => {
+                resolve(res)
+            })
+            .catch((err) => {
+                reject(err)
+            });
+    });
 }
