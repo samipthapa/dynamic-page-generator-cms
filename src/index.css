@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'GilroyLight';
+  font-family: "GilroyLight";
   src: local("Gilroy Light"),
     url("./assets/fonts/gilroy-light-webfont.woff") format("woff"),
     url("./assets/fonts/gilroy-light-webfont.woff2") format("woff2");
@@ -11,25 +11,70 @@
 }
 
 @font-face {
-  font-family: 'GilroyRegular';
-  src: local('Gilroy Regular'),
+  font-family: "GilroyRegular";
+  src: local("Gilroy Regular"),
     url("./assets/fonts/gilroy-regular-webfont.woff") format("woff"),
     url("./assets/fonts/gilroy-regular-webfont.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'GilroyMedium';
-  src: local('Gilroy Medium'),
+  font-family: "GilroyMedium";
+  src: local("Gilroy Medium"),
     url("./assets/fonts/gilroy-medium-webfont.woff") format("woff"),
     url("./assets/fonts/gilroy-medium-webfont.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'GilroyBold';
-  src: local('Gilroy Bold'),
+  font-family: "GilroyBold";
+  src: local("Gilroy Bold"),
     url("./assets/fonts/gilroy-bold-webfont.woff") format("woff"),
     url("./assets/fonts/gilroy-bold-webfont.woff2") format("woff2");
   font-display: swap;
+}
+
+.loader {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vg {
+  width: 3.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+}
+
+.circle {
+  fill: none;
+  stroke: hsl(0, 100%, 50%);
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dashoffset: -125px;
+  }
 }

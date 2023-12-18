@@ -45,6 +45,7 @@ function Login() {
       const response = login(user.username, user.password);
       response
         .then((res) => {
+          localStorage.setItem("userId", res.response.userId.toString());
           console.log("response", res.response.userId.toString());
           navigate("/dashboard");
         })
