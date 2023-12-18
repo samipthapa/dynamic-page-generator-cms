@@ -46,7 +46,6 @@ const deserialize = (data) => {
     }
 
     const elementType = componentMap[type] || type;
-    console.log(elementType)
 
     const jsxElement = React.createElement(elementType, props, children);
 

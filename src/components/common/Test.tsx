@@ -8,6 +8,7 @@ const Test = () => {
             <CustomButton
                 buttonText="Click"
                 handleClick={() => {
+                    console.log(MyComponent)
                     console.log(serialize(MyComponent))
                 }}
                 btnWidth="100%"

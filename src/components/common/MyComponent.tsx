@@ -1,228 +1,81 @@
 import Slider from "react-slick";
 
 const MyComponent = (
-    <div className="h-screen pt-24" id="services">
-        <h1 className="capitalize text-5xl text-center font-semibold">
-            Services we Offer
-        </h1>
-
-        <p className="px-28 pt-10 text-center text-lg">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis
-            tenetur libero quas unde, odio cupiditate nisi deserunt odit expedita
-            non tempora commodi aperiam maiores aut sed ipsa accusantium voluptate
-            alias amet sint nostrum dolore et corporis. Fuga consectetur sed
-        </p>
-
-        <div className="w-1/2 m-auto overflow-hidden">
-            <div className="my-32">
-                <div>
-                    <Slider
-                        dots={true}
-                        infinite={true}
-                        slidesToShow={3}
-                        slidesToScroll={1}
-                        autoplay={true}
-                        speed={2000}
-                        autoplaySpeed={2000}
-                        cssEase={"linear"}
-                    >
-                        <div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "1rem",
-                                    flexDirection: "column",
-                                    gap: "0.75rem",
-                                    borderRadius: "0.375rem",
-                                    borderColor: "#D1D5DB",
-                                    borderWidth: "1px",
-                                    backgroundColor: "#ffffff",
-                                }}
-                            >
-                                <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                                    <img src="https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp" alt="" className="h-10" />
-                                    <h4 style={{ fontWeight: 500, textTransform: "capitalize" }}>
-                                        Hamro Health
-                                    </h4>
-                                </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <img
-                                        src="https://res.cloudinary.com/dssvqu4bj/image/upload/v1702374511/l4loc0hkk5dwkdehyncp.jpg"
-                                        alt="slider_image"
-                                        style={{ objectFit: "cover", width: "100%", height: "9rem" }}
-                                    />
-                                    <p style={{ textAlign: "center" }}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, magnam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "1rem",
-                                    flexDirection: "column",
-                                    gap: "0.75rem",
-                                    borderRadius: "0.375rem",
-                                    borderColor: "#D1D5DB",
-                                    borderWidth: "1px",
-                                    backgroundColor: "#ffffff",
-                                }}
-                            >
-                                <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                                    <img src="https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp" alt="" className="h-10" />
-                                    <h4 style={{ fontWeight: 500, textTransform: "capitalize" }}>
-                                        Hamro Remit
-                                    </h4>
-                                </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <img
-                                        src="http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374612/hh0pnll84a2busyek7qv.jpg"
-                                        alt="slider_image"
-                                        style={{ objectFit: "cover", width: "100%", height: "9rem" }}
-                                    />
-                                    <p style={{ textAlign: "center" }}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, magnam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "1rem",
-                                    flexDirection: "column",
-                                    gap: "0.75rem",
-                                    borderRadius: "0.375rem",
-                                    borderColor: "#D1D5DB",
-                                    borderWidth: "1px",
-                                    backgroundColor: "#ffffff",
-                                }}
-                            >
-                                <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                                    <img src="https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp" alt="" className="h-10" />
-                                    <h4 style={{ fontWeight: 500, textTransform: "capitalize" }}>
-                                        Hamro Recharge
-                                    </h4>
-                                </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <img
-                                        src="http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374642/jozuh877cfq2arntlnp6.jpg"
-                                        alt="slider_image"
-                                        style={{ objectFit: "cover", width: "100%", height: "9rem" }}
-                                    />
-                                    <p style={{ textAlign: "center" }}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, magnam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "1rem",
-                                    flexDirection: "column",
-                                    gap: "0.75rem",
-                                    borderRadius: "0.375rem",
-                                    borderColor: "#D1D5DB",
-                                    borderWidth: "1px",
-                                    backgroundColor: "#ffffff",
-                                }}
-                            >
-                                <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                                    <img src="https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp" alt="" className="h-10" />
-                                    <h4 style={{ fontWeight: 500, textTransform: "capitalize" }}>
-                                        Hamro Gifts
-                                    </h4>
-                                </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <img
-                                        src="http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374681/gtopxnmx0uyspdg9ivpj.jpg "
-                                        alt="slider_image"
-                                        style={{ objectFit: "cover", width: "100%", height: "9rem" }}
-                                    />
-                                    <p style={{ textAlign: "center" }}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, magnam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "1rem",
-                                    flexDirection: "column",
-                                    gap: "0.75rem",
-                                    borderRadius: "0.375rem",
-                                    borderColor: "#D1D5DB",
-                                    borderWidth: "1px",
-                                    backgroundColor: "#ffffff",
-                                }}
-                            >
-                                <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                                    <img src="https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp" alt="" className="h-10" />
-                                    <h4 style={{ fontWeight: 500, textTransform: "capitalize" }}>
-                                        Hamro Jyotish
-                                    </h4>
-                                </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <img
-                                        src="http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374704/o9smwvgrajtbtsfowenb.jpg"
-                                        alt="slider_image"
-                                        style={{ objectFit: "cover", width: "100%", height: "9rem" }}
-                                    />
-                                    <p style={{ textAlign: "center" }}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, magnam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    padding: "1rem",
-                                    flexDirection: "column",
-                                    gap: "0.75rem",
-                                    borderRadius: "0.375rem",
-                                    borderColor: "#D1D5DB",
-                                    borderWidth: "1px",
-                                    backgroundColor: "#ffffff",
-                                }}
-                            >
-                                <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                                    <img src="https://res.cloudinary.com/dssvqu4bj/image/upload/v1702360102/grfykaebabrla6izorzr.webp" alt="" className="h-10" />
-                                    <h4 style={{ fontWeight: 500, textTransform: "capitalize" }}>
-                                        Hamro Pay
-                                    </h4>
-                                </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <img
-                                        src="http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374731/gpbzg6cn7q0yexfmeumj.jpg"
-                                        alt="slider_image"
-                                        style={{ objectFit: "cover", width: "100%", height: "9rem" }}
-                                    />
-                                    <p style={{ textAlign: "center" }}>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, magnam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </Slider>
-                </div>
+    <div
+        id="hero-split"
+        style={{
+            backgroundColor: 'rgb(255, 0, 0)',
+            height: '85vh',
+            marginBottom: '1.25rem',
+            marginTop: '1.25rem',
+            paddingBottom: '5rem',
+            paddingTop: '5rem'
+        }}
+    >
+        <div
+            style={{
+                display: 'grid',
+                gap: '8rem',
+                gridTemplateColumns: 'repeat(2, minmax(0px, 1fr))'
+            }}
+        >
+            <div
+                style={{
+                    alignItems: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    left: '1.25rem',
+                    position: 'relative',
+                    top: '5rem'
+                }}
+            >
+                <img
+                    alt="Banner"
+                    height="600"
+                    id="hero-banner"
+                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    style={{
+                        borderRadius: '0.25rem',
+                        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+                        marginTop: '0.5rem'
+                    }}
+                    width="550"
+                />
             </div>
+            <p
+                id="hero-text"
+                style={{
+                    color: 'rgb(0, 0, 0)',
+                    fontSize: '1.875rem',
+                    lineHeight: '2.25rem',
+                    position: 'relative',
+                    right: '6rem',
+                    textAlign: 'center',
+                    top: '11rem',
+                    userSelect: 'none'
+                }}
+            >
+                At Hamro Patro, we design seamless digital experiences . Explore our cutting-edge products for convenience that elevates your digital lifestyle .
+            </p>
+            <a
+                href="#services"
+                style={{
+                    backgroundColor: 'rgb(220, 38, 38)',
+                    borderRadius: '0.375rem',
+                    bottom: '6rem',
+                    color: 'rgb(255, 255, 255)',
+                    fontSize: '1.125rem',
+                    fontWeight: '500',
+                    lineHeight: '1.75rem',
+                    padding: '0.5rem 1rem',
+                    position: 'absolute',
+                    right: '9rem'
+                }}
+            >
+                Explore our products
+            </a>
         </div>
-    </div >
+    </div>
 );
 
 export default MyComponent

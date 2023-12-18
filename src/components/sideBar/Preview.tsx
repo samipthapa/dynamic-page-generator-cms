@@ -15,7 +15,11 @@ const Preview = () => {
     let contactCenteredSection = deserialize(contactCentered)
 
     return (
-        <div className="scale-95 bg-neutral-100">
+        <div className="scale-95 bg-neutral-100"
+            style={{
+                marginTop: "-4%"
+            }}
+        >
             {navBasicSection}
             {heroSplitSection}
             {detailTileSection}

@@ -8,16 +8,16 @@ import TextField from '@mui/material/TextField'
 import { HexColorPicker } from "react-colorful"
 import InputAdornment from '@mui/material/InputAdornment'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
-// import DeleteIcon from '@mui/icons-material/Delete'
 import { IconButton } from '@mui/material';
-import split from "../../data/hero-section/Split.json"
 import centered from "../../data/hero-section/Centered.json"
 import deserialize from "../../utils/deserialize"
 import rgbToHex from "../../utils/rgbToHex"
-// import { serialize } from "../../utils/serialize"
 import reactElementToJSXString from "react-element-to-jsx-string"
 import TextDialog from "../common/TextDialog"
-
+import { updateHeroSection } from "../../grpcRequests/HeroSection"
+import { serialize } from "../../utils/serialize"
+import parse from "html-react-parser"
+import split from "../../data/hero-section/Split.json"
 
 const HeroSection = () => {
     const [style, setStyle] = useState('Split');
@@ -26,6 +26,38 @@ const HeroSection = () => {
     const [image, setImage] = useState('');
     const [textColor, setTextColor] = useState("");
     const [open, setOpen] = useState(false)
+    // const [hero, setHero] = useState()
+
+    let hero;
+
+    if (style === 'Split') {
+        hero = deserialize(split)
+    }
+    else if (style === 'Centered') {
+        hero = deserialize(centered)
+    }
+
+    useEffect(() => {
+        // setHero()
+        setImage("")
+        setTextColor("")
+        setBgColor("")
+    }, [style])
+
+    // useEffect(() => {
+    //     const response = updateHeroSection("6")
+    //     response
+    //         .then((res) => {
+    //             if (style == "Split")
+    //                 setHero(deserialize(JSON.parse(res.response.split)))
+    //             else if (style == "Centered")
+    //                 setHero(deserialize(JSON.parse(res.response.centered)))
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }, [style])
+
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -41,21 +73,8 @@ const HeroSection = () => {
         }
     }
 
-    let hero;
-
-    if (style === 'Split') {
-        hero = deserialize(split)
-    }
-    else if (style === 'Centered') {
-        hero = deserialize(centered)
-    }
-
     useEffect(() => {
-        setImage("")
-        setTextColor("")
-    }, [style])
-
-    useEffect(() => {
+        // if (!hero) return
         if (textColor == "") {
             setTextColor(rgbToHex(document.getElementById("hero-text")!.style.color))
             setText(document.getElementById("hero-text")!.innerHTML)
@@ -63,17 +82,23 @@ const HeroSection = () => {
             document.getElementById("hero-text")!.style.color = textColor
             document.getElementById("hero-text")!.innerText = text
         }
+        // }, [textColor, text, hero])
     }, [textColor, text])
 
+
     useEffect(() => {
+        // if (!hero || style == "Centered") return
         if (bgColor == "") {
             setBgColor(rgbToHex(document.getElementById("hero-split")!.style.backgroundColor))
         } else {
             document.getElementById("hero-split")!.style.backgroundColor = bgColor
         }
+        // }, [bgColor, hero])
     }, [bgColor])
 
+
     useEffect(() => {
+        // if (!hero) return
         if (image != "" && style == "Split") {
             const heroBanner = document.getElementById("hero-banner") as HTMLImageElement; // or HTMLVideoElement
             heroBanner.src = image;
@@ -81,6 +106,8 @@ const HeroSection = () => {
             document.getElementById("hero-centered")!.style.backgroundImage = `url(${image})`
         }
     }, [image])
+    // }, [image, hero])
+
 
     function cloudinary(image: any) {
         const data = new FormData();
@@ -257,7 +284,22 @@ const HeroSection = () => {
             <div className="mb-4">
                 <CustomButton buttonText="Save Changes"
                     handleClick={() => {
-                        console.log(reactElementToJSXString(hero))
+                        const json = serialize(parse(document.getElementById("hero-split")?.outerHTML))
+                        console.log(JSON.stringify(json))
+                        // let json, active;
+                        // if (style == "Split") {
+                        //     json = reactElementToJSXString(parse(document.getElementById("hero-split")?.outerHTML))
+                        //     console.log(json)
+                        //     active = "Split"
+                        // const response = updateHeroSection("5", { split: json, active: active })
+                        // response
+                        //     .then((res) => {
+                        //         console.log(res)
+                        //     })
+                        //     .catch((err) => {
+                        //         console.log(err)
+                        //     })
+                        // }
                     }}
                 />
             </div>

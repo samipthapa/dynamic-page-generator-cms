@@ -3,7 +3,7 @@
     "props": {
         "id": "hero-split",
         "style": {
-            "backgroundColor": "#ffffff",
+            "backgroundColor": "#F5F5F5",
             "height": "85vh",
             "marginBottom": "1.25rem",
             "marginTop": "1.25rem",
