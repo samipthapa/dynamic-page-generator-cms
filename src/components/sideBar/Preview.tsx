@@ -11,6 +11,7 @@ import { updateDetailSection } from "../../grpcRequests/DetailSection";
 import { updateNavSection } from "../../grpcRequests/NavSection";
 import { updateHeroSection } from "../../grpcRequests/HeroSection";
 import { updateContactSection } from "../../grpcRequests/ContactSection";
+import { updateFooterSection } from "../../grpcRequests/Footer";
 
 const Preview = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,7 @@ const Preview = () => {
   const [navbar, setNavbar] = useState(null);
   const [hero, setHero] = useState(null);
   const [contactSection, setContactSection] = useState(null);
+  const [footerSection, setFooterSection] = useState(null);
 
   useEffect(() => {
     const fetchNavbar = async () => {
@@ -111,14 +113,14 @@ const Preview = () => {
   useEffect(() => {
     const fetchFooter = async () => {
       try {
-        const response = await updateContactSection(
+        const response = await updateFooterSection(
           localStorage.getItem("userId")
         );
         if (response?.response) {
           if (response.response.active === "Basic") {
-            setContactSection(deserialize(JSON.parse(response.response.basic)));
+            setFooterSection(deserialize(JSON.parse(response.response.basic)));
           } else if (response.response.active === "Centered") {
-            setContactSection(
+            setFooterSection(
               deserialize(JSON.parse(response.response.centered))
             );
           }
@@ -168,6 +170,7 @@ const Preview = () => {
       <div>{hero}</div>
       <div>{detail}</div>
       <div>{contactSection}</div>
+      {/* <div>{Fooetsec}</div> */}
     </div>
   );
 };

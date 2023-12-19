@@ -9,10 +9,6 @@ import { UserRequest } from "../generated/UserRegister";
 import { UserLoginClient } from "../generated/UserLogin.client";
 import { LoginRequest } from "../generated/UserLogin";
 
-import { FooterServiceClient } from "../generated/footer.client";
-import { JsonDataRequest } from "../generated/footer";
-import { JsonDataUpdateRequest } from "../generated/footer";
-
 import { ContactSectionServiceClient } from "../generated/ContactSectionService.client";
 import { ContactRequest } from "../generated/ContactSectionService";
 
@@ -21,6 +17,12 @@ import { DetailRequest } from "../generated/DetailSectionService";
 
 import { NavSectionServiceClient } from "../generated/NavSectionService.client";
 import { NavRequest } from "../generated/NavSectionService";
+
+import { FooterSectionServiceClient } from "../generated/FooterSectionService.client";
+import { FooterRequest } from "../generated/FooterSectionService";
+
+import { SliderSectionServiceClient } from "../generated/slidersectionservice.client";
+import { SliderRequest } from "../generated/SliderSectionService";
 
 const config = new GrpcWebFetchTransport({
   baseUrl: "http://192.168.28.121:8082",
@@ -37,11 +39,6 @@ const RegisterReq = UserRequest.create();
 const LogInServiceClient = new UserLoginClient(config);
 const LogInReq = LoginRequest.create();
 
-// Footer Request
-const FooterClient = new FooterServiceClient(config);
-const DataReq = JsonDataRequest.create();
-const DataUpdateReq = JsonDataUpdateRequest.create();
-
 // Contact Request
 const ContactClient = new ContactSectionServiceClient(config);
 const ContactReq = ContactRequest.create();
@@ -54,20 +51,29 @@ const DetailReq = DetailRequest.create();
 const NavClient = new NavSectionServiceClient(config);
 const NavReq = NavRequest.create();
 
+// Footer Request
+const FooterSectionClient = new FooterSectionServiceClient(config);
+const FooterSectionReq = FooterRequest.create();
+
+// Slider Request
+const SliderClient = new SliderSectionServiceClient(config);
+const SliderReq = SliderRequest.create();
+
 export {
   RegisterServiceClient,
   LogInServiceClient,
-  FooterClient,
   HeroSectionClient,
   ContactClient,
   DetailClient,
   NavClient,
+  FooterSectionClient,
+  SliderClient,
   RegisterReq,
   LogInReq,
-  DataReq,
-  DataUpdateReq,
   HeroSectionReq,
   ContactReq,
   DetailReq,
   NavReq,
+  FooterSectionReq,
+  SliderReq,
 };

@@ -1,6 +1,7 @@
 {
     "type": "div",
     "props": {
+        "id": "footer-section",
         "children": {
             "type": "div",
             "props": {
@@ -134,6 +135,7 @@
                     {
                         "type": "div",
                         "props": {
+                            "id": "footer-body",
                             "style": {
                                 "display": "flex",
                                 "paddingTop": "0.75rem",
@@ -151,6 +153,10 @@
                             "children": {
                                 "type": "p",
                                 "props": {
+                                    "id": "footer-text",
+                                    "style": {
+                                        "color": "#000000"
+                                    },
                                     "children": [
                                         "© Hamro Patro ",
                                         2023,

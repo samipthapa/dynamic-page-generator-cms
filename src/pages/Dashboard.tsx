@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("Preview");
 
   const handleSelected = (itemName: string) => {
     setSelectedItem(itemName);
