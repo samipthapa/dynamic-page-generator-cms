@@ -14,6 +14,8 @@ import TextDialog from "../common/TextDialog";
 import { updateNavSection } from "../../grpcRequests/NavSection";
 import { serialize } from "../../utils/serialize";
 import parse from "html-react-parser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
   const [style, setStyle] = useState("");
@@ -22,6 +24,19 @@ const Header = () => {
   const [image, setImage] = useState("");
   const [header, setHeader] = useState();
   const [loading, setLoading] = useState(true);
+
+  const notify = () => {
+    toast.success("Your changes have been saved!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   useEffect(() => {
     setHeader();
@@ -287,7 +302,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-
+          <ToastContainer />
           <Typography variant="subtitle1">Preview</Typography>
 
           <div
@@ -329,6 +344,7 @@ const Header = () => {
               }
               response
                 ?.then((res) => {
+                  notify();
                   console.log(res);
                 })
                 .catch((err) => {

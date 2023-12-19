@@ -15,6 +15,8 @@ import { updateHeroSection } from "../../grpcRequests/HeroSection";
 import { serialize } from "../../utils/serialize";
 import parse from "html-react-parser";
 import { number, string } from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HeroSection = () => {
   const [style, setStyle] = useState("");
@@ -25,6 +27,19 @@ const HeroSection = () => {
   const [open, setOpen] = useState(false);
   const [hero, setHero] = useState();
   const [loading, setLoading] = useState(true);
+
+  const notify = () => {
+    toast.success("Your changes have been saved!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   useEffect(() => {
     setHero();
@@ -184,6 +199,7 @@ const HeroSection = () => {
           >
             {style == "Split" && (
               <div className="w-[30%]">
+                <ToastContainer />
                 <Typography variant="subtitle1">Background Color</Typography>
                 <TextField
                   variant="outlined"
@@ -320,6 +336,7 @@ const HeroSection = () => {
                 }
                 response
                   ?.then((res) => {
+                    notify();
                     console.log(res);
                   })
                   .catch((err) => {

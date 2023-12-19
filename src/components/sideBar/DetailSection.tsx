@@ -13,6 +13,8 @@ import { updateDetailSection } from "../../grpcRequests/DetailSection";
 import { serialize } from "../../utils/serialize";
 import parse from "html-react-parser";
 import { FaSleigh } from "react-icons/fa6";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DetailSection = () => {
   const initialDetail = {
@@ -32,6 +34,19 @@ const DetailSection = () => {
   const [detail, setDetail] = useState(initialDetail);
   const [detailSection, setDetailSection] = useState();
   const [loading, setLoading] = useState(true);
+
+  const notify = () => {
+    toast.success("Your changes have been saved!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   // let detailSection
 
@@ -143,7 +158,7 @@ const DetailSection = () => {
               </FormControl>
             </div>
           </div>
-
+          <ToastContainer />
           <Typography variant="subtitle1">Preview</Typography>
 
           <div
@@ -194,6 +209,7 @@ const DetailSection = () => {
                 }
                 response
                   ?.then((res) => {
+                    notify();
                     console.log(res);
                   })
                   .catch((err) => {

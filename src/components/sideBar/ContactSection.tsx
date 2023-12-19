@@ -13,11 +13,26 @@ import { updateContactSection } from "../../grpcRequests/ContactSection";
 import parse from "html-react-parser";
 import { serialize } from "../../utils/serialize";
 import { FaSleigh } from "react-icons/fa6";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactSection = () => {
   const [style, setStyle] = useState("");
   const [contact, setContact] = useState();
   const [loading, setLoading] = useState(true);
+
+  const notify = () => {
+    toast.success("Your changes have been saved!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   useEffect(() => {
     setContact();
@@ -30,6 +45,7 @@ const ContactSection = () => {
     const response = updateContactSection(localStorage.getItem("userId"));
     response
       .then((res) => {
+        console.log(res.response);
         if (style == "") {
           if (res.response.active == "Tile") {
             setContact(deserialize(JSON.parse(res.response.tile)));
@@ -97,6 +113,7 @@ const ContactSection = () => {
     setValue(id);
     setOpen(true);
   }
+  <ToastContainer />;
 
   const addClickListener = (id: string, hanldeClick: (id: string) => void) => {
     const element = document.getElementById(id);
@@ -132,7 +149,6 @@ const ContactSection = () => {
           <p className="text-sm">
             <strong>Note:</strong> Click on elements on preview below to edit
           </p>
-
           <div className="my-5 w-1/2">
             <Typography variant="subtitle1">Contact Section Style</Typography>
             <div className="my-1 w-[45%]">
@@ -147,9 +163,8 @@ const ContactSection = () => {
               </FormControl>
             </div>
           </div>
-
+          <ToastContainer />
           <Typography variant="subtitle1">Preview</Typography>
-
           <div
             className="mt-4 mb-6 scale-[0.6]"
             style={{
@@ -169,7 +184,6 @@ const ContactSection = () => {
             value={value}
             field={detail}
           />
-
           <div className="mb-4">
             <CustomButton
               buttonText="Save Changes"
@@ -197,6 +211,7 @@ const ContactSection = () => {
                 }
                 response
                   ?.then((res) => {
+                    notify();
                     console.log(res);
                   })
                   .catch((err) => {

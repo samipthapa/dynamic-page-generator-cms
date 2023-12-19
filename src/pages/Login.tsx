@@ -28,6 +28,7 @@ function Login() {
       const response = register(user.username, user.email, user.password);
       response
         .then((res) => {
+          toggleSignInFrom();
           console.log(res);
         })
         .catch((err) => {

@@ -12,6 +12,7 @@ import { updateNavSection } from "../../grpcRequests/NavSection";
 import { updateHeroSection } from "../../grpcRequests/HeroSection";
 import { updateContactSection } from "../../grpcRequests/ContactSection";
 import { updateFooterSection } from "../../grpcRequests/Footer";
+import { updateSliderSection } from "../../grpcRequests/SliderSection";
 
 const Preview = () => {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,7 @@ const Preview = () => {
   const [hero, setHero] = useState(null);
   const [contactSection, setContactSection] = useState(null);
   const [footerSection, setFooterSection] = useState(null);
+  const [sliderSection, setSliderSection] = useState(null);
 
   useEffect(() => {
     const fetchNavbar = async () => {
@@ -92,8 +94,8 @@ const Preview = () => {
           localStorage.getItem("userId")
         );
         if (response?.response) {
-          if (response.response.active === "Basic") {
-            setContactSection(deserialize(JSON.parse(response.response.basic)));
+          if (response.response.active === "Tile") {
+            setContactSection(deserialize(JSON.parse(response.response.tile)));
           } else if (response.response.active === "Centered") {
             setContactSection(
               deserialize(JSON.parse(response.response.centered))
@@ -135,6 +137,25 @@ const Preview = () => {
     fetchFooter();
   }, []);
 
+  useEffect(() => {
+    const fetchSlider = async () => {
+      try {
+        const response = await updateSliderSection(
+          localStorage.getItem("userId")
+        );
+        if (response?.response) {
+          setSliderSection(deserialize(JSON.parse(response.response.basic)));
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSlider();
+  }, []);
+
   if (loading) {
     return (
       <div className="loader">
@@ -169,8 +190,9 @@ const Preview = () => {
       <div>{navbar}</div>
       <div>{hero}</div>
       <div>{detail}</div>
+      <div>{sliderSection}</div>
       <div>{contactSection}</div>
-      {/* <div>{Fooetsec}</div> */}
+      <div>{footerSection}</div>
     </div>
   );
 };
