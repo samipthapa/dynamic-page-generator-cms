@@ -48,7 +48,7 @@ const Dashboard = () => {
   return (
     <div>
       <SideBar selectedItem={selectedItem} handleSelected={handleSelected} />
-      {/* <Test /> */}
+      <Test />
       {/* <Tiptap /> */}
       <div className="ml-72 mt-3 mr-4">{renderComponent()}</div>
     </div>

@@ -21,7 +21,7 @@ import { NavRequest } from "../generated/NavSectionService";
 import { FooterSectionServiceClient } from "../generated/FooterSectionService.client";
 import { FooterRequest } from "../generated/FooterSectionService";
 
-import { SliderSectionServiceClient } from "../generated/slidersectionservice.client";
+import { SliderSectionServiceClient } from "../generated/SliderSectionService.client";
 import { SliderRequest } from "../generated/SliderSectionService";
 
 const config = new GrpcWebFetchTransport({

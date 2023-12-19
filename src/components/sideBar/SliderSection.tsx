@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from "react"
 import { updateSliderSection } from "../../grpcRequests/SliderSection";
 import parse from "html-react-parser";
-import slider from "../../data/slider-section/slider.json"
 import { Typography } from "@mui/material"
 import TextDialog from "../common/TextDialog"
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
@@ -121,6 +120,7 @@ const SliderSection = () => {
     }, [detail])
 
     useEffect(() => {
+        if (!slider) return;
         const updatedSliders = { ...sliders };
 
         Object.keys(sliders).forEach((item: string) => {
