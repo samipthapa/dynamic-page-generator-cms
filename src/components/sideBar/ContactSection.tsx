@@ -9,13 +9,15 @@ import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import TextDialog from "../common/TextDialog";
 import CustomButton from "../common/CustomButton";
-import { updateContactSection } from "../../grpcRequests/ContactSection"
+import { updateContactSection } from "../../grpcRequests/ContactSection";
 import parse from "html-react-parser";
 import { serialize } from "../../utils/serialize";
+import { FaSleigh } from "react-icons/fa6";
 
 const ContactSection = () => {
   const [style, setStyle] = useState("");
   const [contact, setContact] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setContact();
@@ -24,30 +26,31 @@ const ContactSection = () => {
   }, [style]);
 
   useEffect(() => {
-    const response = updateContactSection("5")
+    setLoading(true);
+    const response = updateContactSection(localStorage.getItem("userId"));
     response
       .then((res) => {
         if (style == "") {
           if (res.response.active == "Tile") {
-            setContact(deserialize(JSON.parse(res.response.tile)))
+            setContact(deserialize(JSON.parse(res.response.tile)));
+          } else if (res.response.active == "Centered") {
+            setContact(deserialize(JSON.parse(res.response.centered)));
           }
-          else if (res.response.active == "Centered") {
-            setContact(deserialize(JSON.parse(res.response.centered)))
-          }
-          setStyle(res.response.active)
+          setStyle(res.response.active);
         } else {
           if (style == "Tile") {
-            setContact(deserialize(JSON.parse(res.response.tile)))
-          }
-          else if (style == "Centered") {
-            setContact(deserialize(JSON.parse(res.response.centered)))
+            setContact(deserialize(JSON.parse(res.response.tile)));
+          } else if (style == "Centered") {
+            setContact(deserialize(JSON.parse(res.response.centered)));
           }
         }
+        setLoading(false);
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }, [style])
+        console.log(err);
+        setLoading(false);
+      });
+  }, [style]);
 
   const initialContact = {
     welcomeheading: "",
@@ -114,71 +117,97 @@ const ContactSection = () => {
   addClickListener("email2", hanldeClick);
 
   return (
-    <div className="w-full">
-      <p className="font-gilroy-bold text-gray-400 uppercase">
-        Contact SECTION EDITOR
-      </p>
-      <p className="text-sm">
-        <strong>Note:</strong> Click on elements on preview below to edit
-      </p>
-
-      <div className="my-5 w-1/2">
-        <Typography variant="subtitle1">Contact Section Style</Typography>
-        <div className="my-1 w-[45%]">
-          <FormControl size="small" fullWidth>
-            <Select
-              value={style}
-              onChange={(e: SelectChangeEvent) => setStyle(e.target.value)}
-            >
-              <MenuItem value="Centered">Centered</MenuItem>
-              <MenuItem value="Tile">Tile</MenuItem>
-            </Select>
-          </FormControl>
+    <>
+      {loading ? (
+        <div className="loader">
+          <svg className="vg" viewBox="25 25 50 50">
+            <circle className="circle" r="20" cy="50" cx="50"></circle>
+          </svg>
         </div>
-      </div>
+      ) : (
+        <div className="w-full">
+          <p className="font-gilroy-bold text-gray-400 uppercase">
+            Contact SECTION EDITOR
+          </p>
+          <p className="text-sm">
+            <strong>Note:</strong> Click on elements on preview below to edit
+          </p>
 
-      <Typography variant="subtitle1">Preview</Typography>
+          <div className="my-5 w-1/2">
+            <Typography variant="subtitle1">Contact Section Style</Typography>
+            <div className="my-1 w-[45%]">
+              <FormControl size="small" fullWidth>
+                <Select
+                  value={style}
+                  onChange={(e: SelectChangeEvent) => setStyle(e.target.value)}
+                >
+                  <MenuItem value="Centered">Centered</MenuItem>
+                  <MenuItem value="Tile">Tile</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          </div>
 
-      <div
-        className="mt-4 mb-6 scale-[0.6]"
-        style={{
-          marginTop: "-12%",
-          marginLeft: "-25%",
-          marginBottom: "-11%",
-        }}
-      >
-        {contact}
-      </div>
-      <TextDialog
-        open={open}
-        handleTextChange={(e) =>
-          setDetail({ ...detail, [value]: e.target.value })
-        }
-        handleClose={() => setOpen(false)}
-        value={value}
-        field={detail}
-      />
+          <Typography variant="subtitle1">Preview</Typography>
 
-      <div className="mb-4">
-        <CustomButton buttonText="Save Changes" handleClick={() => {
-          let response
-          const json = serialize(parse(document.getElementById("contact-section")?.outerHTML))
-          if (style == "Tile") {
-            response = updateContactSection("5", { tile: json, active: style })
-          } else if (style == "Centered") {
-            response = updateContactSection("5", { centered: json, active: style })
-          }
-          response
-            ?.then((res) => {
-              console.log(res)
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+          <div
+            className="mt-4 mb-6 scale-[0.6]"
+            style={{
+              marginTop: "-12%",
+              marginLeft: "-25%",
+              marginBottom: "-11%",
+            }}
+          >
+            {contact}
+          </div>
+          <TextDialog
+            open={open}
+            handleTextChange={(e) =>
+              setDetail({ ...detail, [value]: e.target.value })
+            }
+            handleClose={() => setOpen(false)}
+            value={value}
+            field={detail}
+          />
 
-        }} />
-      </div>
-    </div>
+          <div className="mb-4">
+            <CustomButton
+              buttonText="Save Changes"
+              handleClick={() => {
+                let response;
+                const json = serialize(
+                  parse(document.getElementById("contact-section")?.outerHTML)
+                );
+                if (style == "Tile") {
+                  response = updateContactSection(
+                    localStorage.getItem("userId"),
+                    {
+                      tile: json,
+                      active: style,
+                    }
+                  );
+                } else if (style == "Centered") {
+                  response = updateContactSection(
+                    localStorage.getItem("userId"),
+                    {
+                      centered: json,
+                      active: style,
+                    }
+                  );
+                }
+                response
+                  ?.then((res) => {
+                    console.log(res);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

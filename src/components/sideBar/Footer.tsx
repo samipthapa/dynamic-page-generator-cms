@@ -41,6 +41,7 @@ const Footer = () => {
     company: "",
     facebook: "",
   });
+  const [loading, setLoading] = useState(true);
 
   let footer;
 
@@ -66,33 +67,80 @@ const Footer = () => {
     setOpen(false);
   };
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   if (bgColor === "") {
+  //     setBgColor(
+  //       rgbToHex(document.getElementById("body")?.style.backgroundColor)
+  //     );
+  //   } else {
+  //     document.getElementById("body").style.backgroundColor = bgColor;
+  //   }
+
+  //   if (textColor === "") {
+  //     setTextColor(
+  //       rgbToHex(document.getElementById("footer-text")?.style.color)
+  //     );
+  //   } else {
+  //     document.getElementById("footer-text").style.color = textColor;
+  //   }
+  //   setLoading(false);
+  // }, [bgColor, textColor]);
+
   useEffect(() => {
-    if (bgColor === "") {
-      setBgColor(
-        rgbToHex(document.getElementById("body")?.style.backgroundColor)
-      );
-    } else {
-      document.getElementById("body").style.backgroundColor = bgColor;
+    setLoading(true);
+    const bodyElement = document.getElementById("body");
+    const footerTextElement = document.getElementById("footer-text");
+
+    if (bodyElement) {
+      if (bgColor === "") {
+        setBgColor(rgbToHex(bodyElement.style.backgroundColor));
+      } else {
+        bodyElement.style.backgroundColor = bgColor;
+      }
     }
 
-    if (textColor === "") {
-      setTextColor(
-        rgbToHex(document.getElementById("footer-text")?.style.color)
-      );
-    } else {
-      document.getElementById("footer-text").style.color = textColor;
+    if (footerTextElement) {
+      if (textColor === "") {
+        setTextColor(rgbToHex(footerTextElement.style.color));
+      } else {
+        footerTextElement.style.color = textColor;
+      }
     }
+
+    setLoading(false);
   }, [bgColor, textColor]);
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   if (text === "") {
+  //     setText(document.getElementById("company").innerText);
+  //   }
+  //   setField({
+  //     ...field,
+  //     company: document.getElementById("company").innerText,
+  //     facebook: document.getElementById("facebook")?.getAttribute("href"),
+  //   });
+  //   setLoading(false);
+  // }, []);
+
   useEffect(() => {
-    if (text === "") {
-      setText(document.getElementById("company").innerText);
+    setLoading(true);
+    const companyElement = document.getElementById("company");
+
+    if (companyElement) {
+      if (text === "") {
+        setText(companyElement.innerText);
+      }
+
+      setField({
+        ...field,
+        company: companyElement.innerText,
+        facebook: document.getElementById("facebook")?.getAttribute("href"),
+      });
     }
-    setField({
-      ...field,
-      company: document.getElementById("company").innerText,
-      facebook: document.getElementById("facebook")?.getAttribute("href"),
-    });
+
+    setLoading(false);
   }, []);
 
   function handleClick(id: string) {
@@ -106,99 +154,109 @@ const Footer = () => {
   company?.addEventListener("click", () => handleClick("company"));
 
   return (
-    <div>
-      <p className="font-gilroy-bold text-gray-400">FOOTER EDITOR</p>
-
-      <div className="my-4">
-        <Typography variant="subtitle1">Footer Style</Typography>
-        <div className="w-1/4 my-1">
-          <FormControl size="small" fullWidth>
-            <Select
-              value={style}
-              onChange={(e: SelectChangeEvent) => setStyle(e.target.value)}
-            >
-              <MenuItem value="Basic">Basic</MenuItem>
-              <MenuItem value="Centered">Centered</MenuItem>
-            </Select>
-          </FormControl>
+    <>
+      {loading ? (
+        <div className="loader">
+          <svg className="vg" viewBox="25 25 50 50">
+            <circle className="circle" r="20" cy="50" cx="50"></circle>
+          </svg>
         </div>
-      </div>
-
-      <div className="flex my-4 justify-between w-[45%]">
+      ) : (
         <div>
-          <Typography variant="subtitle1">Background Color</Typography>
-          <TextField
-            variant="outlined"
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <div
-                    className="rounded-full w-4 h-4"
-                    style={{
-                      backgroundColor: bgColor,
-                    }}
-                  ></div>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ marginBottom: "0.5rem" }}
-            value={bgColor}
-            onChange={(e) => setBgColor(e.target.value)}
+          <p className="font-gilroy-bold text-gray-400">FOOTER EDITOR</p>
+
+          <div className="my-4">
+            <Typography variant="subtitle1">Footer Style</Typography>
+            <div className="w-1/4 my-1">
+              <FormControl size="small" fullWidth>
+                <Select
+                  value={style}
+                  onChange={(e: SelectChangeEvent) => setStyle(e.target.value)}
+                >
+                  <MenuItem value="Basic">Basic</MenuItem>
+                  <MenuItem value="Centered">Centered</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+
+          <div className="flex my-4 justify-between w-[45%]">
+            <div>
+              <Typography variant="subtitle1">Background Color</Typography>
+              <TextField
+                variant="outlined"
+                size="small"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <div
+                        className="rounded-full w-4 h-4"
+                        style={{
+                          backgroundColor: bgColor,
+                        }}
+                      ></div>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{ marginBottom: "0.5rem" }}
+                value={bgColor}
+                onChange={(e) => setBgColor(e.target.value)}
+              />
+              <HexColorPicker color={bgColor} onChange={setBgColor} />
+            </div>
+            <div>
+              <Typography variant="subtitle1">Text Color</Typography>
+
+              <TextField
+                variant="outlined"
+                size="small"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <div
+                        className="rounded-full w-4 h-4"
+                        style={{
+                          backgroundColor: textColor,
+                        }}
+                      ></div>
+                    </InputAdornment>
+                  ),
+                }}
+                value={textColor}
+                onChange={(e) => setTextColor(e.target.value)}
+                sx={{ marginBottom: "0.5rem" }}
+              />
+              <HexColorPicker color={textColor} onChange={setTextColor} />
+            </div>
+          </div>
+          <Typography variant="subtitle1">Preview</Typography>
+
+          <div className="mt-4 mb-6">{footer}</div>
+
+          <TextDialog
+            open={open}
+            field={field}
+            handleTextChange={handleTextChange}
+            handleClose={handleClose}
+            value={value}
           />
-          <HexColorPicker color={bgColor} onChange={setBgColor} />
-        </div>
-        <div>
-          <Typography variant="subtitle1">Text Color</Typography>
 
-          <TextField
-            variant="outlined"
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <div
-                    className="rounded-full w-4 h-4"
-                    style={{
-                      backgroundColor: textColor,
-                    }}
-                  ></div>
-                </InputAdornment>
-              ),
-            }}
-            value={textColor}
-            onChange={(e) => setTextColor(e.target.value)}
-            sx={{ marginBottom: "0.5rem" }}
-          />
-          <HexColorPicker color={textColor} onChange={setTextColor} />
-        </div>
-      </div>
-      <Typography variant="subtitle1">Preview</Typography>
-
-      <div className="mt-4 mb-6">{footer}</div>
-
-      <TextDialog
-        open={open}
-        field={field}
-        handleTextChange={handleTextChange}
-        handleClose={handleClose}
-        value={value}
-      />
-
-      {/* <LinkDialog
+          {/* <LinkDialog
                 open={open}
                 data={link}
                 handleTextChange={handleTextChange}
                 handleClose={handleClose}
             /> */}
 
-      <CustomButton
-        handleClick={() => {
-          console.log(serialize(footer));
-        }}
-        buttonText="Save Changes"
-      />
-    </div>
+          <CustomButton
+            handleClick={() => {
+              console.log(serialize(footer));
+            }}
+            buttonText="Save Changes"
+          />
+        </div>
+      )}
+    </>
   );
 };
 

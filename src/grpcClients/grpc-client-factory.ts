@@ -16,19 +16,18 @@ import { JsonDataUpdateRequest } from "../generated/footer";
 import { ContactSectionServiceClient } from "../generated/ContactSectionService.client";
 import { ContactRequest } from "../generated/ContactSectionService";
 
-import { DetailSectionServiceClient } from "../generated/DetailSectionService.client"
+import { DetailSectionServiceClient } from "../generated/DetailSectionService.client";
 import { DetailRequest } from "../generated/DetailSectionService";
 
-import { NavSectionServiceClient } from "../generated/NavSectionService.client"
-import { NavRequest } from "../generated/NavSectionService"
-
+import { NavSectionServiceClient } from "../generated/NavSectionService.client";
+import { NavRequest } from "../generated/NavSectionService";
 
 const config = new GrpcWebFetchTransport({
   baseUrl: "http://192.168.28.121:8082",
 });
 
 const HeroSectionClient = new HeroSectionServiceClient(config);
-const HeroSectionReq = HeroSectionUpdateRequest.create()
+const HeroSectionReq = HeroSectionUpdateRequest.create();
 
 // Register Request
 const RegisterServiceClient = new UserSignUpClient(config);
@@ -63,7 +62,6 @@ export {
   ContactClient,
   DetailClient,
   NavClient,
-
   RegisterReq,
   LogInReq,
   DataReq,
