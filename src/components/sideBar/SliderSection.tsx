@@ -11,7 +11,8 @@ import slider from "../../data/slider-section/slider.json"
 import { Typography } from "@mui/material"
 import TextDialog from "../common/TextDialog"
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
-
+import SliderDialog from "../common/SliderDialog";
+import { serialize } from "../../utils/serialize";
 
 const SliderSection = () => {
     const initialDetail = {
@@ -19,61 +20,96 @@ const SliderSection = () => {
         "subheading": ""
     } as { [key: string]: string }
     const [open, setOpen] = useState(false)
+    const [openDialog, setOpenDialog] = useState(false)
     const [value, setValue] = useState('')
     const [image, setImage] = useState('')
 
     const [detail, setDetail] = useState(initialDetail)
 
+    const [sliders, setSliders] = useState({
+        "slider1": { "title": "", "image": "", "body": "" },
+        "slider2": { "title": "", "image": "", "body": "" },
+        "slider3": { "title": "", "image": "", "body": "" },
+        "slider4": { "title": "", "image": "", "body": "" },
+        "slider5": { "title": "", "image": "", "body": "" },
+        "slider6": { "title": "", "image": "", "body": "" }
+    })
 
-    let sliderSection = deserialize(slider)
-    // const [slider, setSlider] = useState()
+    // let sliderSection = deserialize(slider)
+    const [slider, setSlider] = useState()
 
-    // useEffect(() => {
-    //     const response = updateSliderSection("12")
-    //     response
-    //         .then((res) => {
-    //             setSlider(deserialize(JSON.parse(res.response.basic)))
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }, [])
+    useEffect(() => {
+        const response = updateSliderSection("5")
+        response
+            .then((res) => {
+                setSlider(deserialize(JSON.parse(res.response.basic)))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [])
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         const reader = new FileReader();
 
         reader.onloadend = () => {
-            setImage(reader.result as string);
             cloudinary(reader.result)
-        }
+                .then((imageUrl) => {
+                    setImage(imageUrl);
+                })
+                .catch((error) => {
+                    console.error("Error uploading image:", error);
+                });
+        };
 
         if (file) {
             reader.readAsDataURL(file);
         }
     }
 
-    function cloudinary(image: any) {
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            cloudinary(reader.result)
+                .then((imageUrl) => {
+                    setSliders({ ...sliders, [value]: { ...sliders[value], "image": imageUrl } })
+                })
+                .catch((error) => {
+                    console.error("Error uploading image:", error);
+                });
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function cloudinary(image: any): Promise<string> {
         const data = new FormData();
         data.append("file", image);
         data.append("upload_preset", "dynamic-cms");
         data.append("cloud_name", "dssvqu4bj");
 
-        fetch("https://api.cloudinary.com/v1_1/dssvqu4bj/image/upload", {
+        return fetch("https://api.cloudinary.com/v1_1/dssvqu4bj/image/upload", {
             method: "post",
             body: data,
         })
             .then((res) => res.json())
             .then((data) => {
-                setImage(data.url);
                 console.log("success", data.url);
+                return data.url; // Return the URL
             })
             .catch((err) => {
                 console.log("error", err);
+                throw err; // Propagate the error
             });
     }
 
     useEffect(() => {
+        if (!slider) return;
         Object.keys(detail).forEach((item: string) => {
 
             if (detail[item] == "") {
@@ -83,6 +119,43 @@ const SliderSection = () => {
             }
         })
     }, [detail])
+
+    useEffect(() => {
+        const updatedSliders = { ...sliders };
+
+        Object.keys(sliders).forEach((item: string) => {
+            if (sliders[item]["title"] == "" && sliders[item]["image"] == "" && sliders[item]["body"] == "") {
+                let sliderElements = document.getElementsByClassName(item)
+                for (let i = 0; i < sliderElements.length; i++) {
+                    const currentElement = sliderElements[i] as HTMLElement
+                    if (currentElement.tagName == "H4") {
+                        updatedSliders[item] = { ...updatedSliders[item], "title": currentElement.innerText };
+                    }
+                    else if (currentElement.tagName == "P") {
+                        updatedSliders[item] = { ...updatedSliders[item], "body": currentElement.innerText };
+                    } else if (currentElement.tagName == "IMG") {
+                        const image = currentElement as HTMLImageElement
+                        updatedSliders[item] = { ...updatedSliders[item], "image": image.src };
+                    }
+                }
+                setSliders(updatedSliders)
+            } else {
+                let sliderElements = document.getElementsByClassName(item)
+                for (let i = 0; i < sliderElements.length; i++) {
+                    const currentElement = sliderElements[i] as HTMLElement
+                    if (currentElement.tagName == "H4") {
+                        currentElement.innerText = sliders[item]["title"]
+                    }
+                    else if (currentElement.tagName == "P") {
+                        currentElement.innerText = sliders[item]["body"]
+                    } else if (currentElement.tagName == "IMG") {
+                        const image = currentElement as HTMLImageElement
+                        image.src = sliders[item]["image"]
+                    }
+                }
+            }
+        })
+    }, [sliders])
 
     useEffect(() => {
         if (image != "") {
@@ -104,10 +177,24 @@ const SliderSection = () => {
         element?.addEventListener('click', () => handleClick(id));
     };
 
-    addClickListener('heading', handleClick);
-    addClickListener('subheading', handleClick);
+    // addClickListener('heading', handleClick);
+    // addClickListener('subheading', handleClick);
+    document.getElementById('heading')?.addEventListener('click', () => {
+        setValue('heading');
+        setOpenDialog(true);
+    });
+    document.getElementById('subheading')?.addEventListener('click', () => {
+        setValue('subheading');
+        setOpenDialog(true);
+    });
+    addClickListener('slider1', handleClick);
+    addClickListener('slider2', handleClick);
+    addClickListener('slider3', handleClick);
+    addClickListener('slider4', handleClick);
+    addClickListener('slider5', handleClick);
+    addClickListener('slider6', handleClick);
 
-    document.getElementById('slider1')?.addEventListener('click', () => { console.log('slider1') });
+    // document.getElementById('slider1')?.addEventListener('click', () => { console.log('slider1') });
 
     return (
         <div className="w-full">
@@ -157,25 +244,44 @@ const SliderSection = () => {
             <div className="mt-4 mb-6 scale-[0.95]"
                 style={{
                     "marginTop": "-6%",
-                    "marginLeft": "-12%",
+                    "marginLeft": "-10%",
                     "marginBottom": "-8%"
                 }}>
-                {sliderSection}
+                {slider}
             </div>
 
 
             <TextDialog
-                open={open}
+                open={openDialog}
                 handleTextChange={(e) => setDetail({ ...detail, [value]: e.target.value })}
-                handleClose={() => setOpen(false)}
+                handleClose={() => setOpenDialog(false)}
                 value={value}
                 field={detail}
+            />
+
+            <SliderDialog
+                open={open}
+                handleTitleChange={(e) => setSliders({ ...sliders, [value]: { ...sliders[value], "title": e.target.value } })}
+                handleImageUpload={(e) => handleImageUpload(e)}
+                handleBodyChange={(e) => setSliders({ ...sliders, [value]: { ...sliders[value], "body": e.target.value } })}
+                handleClose={() => setOpen(false)}
+                value={value}
+                field={sliders}
             />
 
             <div className="mb-4">
                 <CustomButton buttonText="Save Changes"
                     handleClick={() => {
-                        console.log('Hello World')
+                        let response
+                        const json = serialize(parse(document.getElementById("services")?.outerHTML))
+                        response = updateSliderSection("5", json)
+                        response
+                            ?.then((res) => {
+                                console.log(res)
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
                     }}
                 />
             </div>

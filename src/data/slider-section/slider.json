@@ -161,6 +161,7 @@
                                                         "children": {
                                                             "type": "div",
                                                             "props": {
+                                                                "id": "slider2",
                                                                 "style": {
                                                                     "display": "flex",
                                                                     "padding": "1rem",
@@ -193,6 +194,7 @@
                                                                                 {
                                                                                     "type": "h4",
                                                                                     "props": {
+                                                                                        "className": "slider2",
                                                                                         "style": {
                                                                                             "fontWeight": 500,
                                                                                             "textTransform": "capitalize"
@@ -214,6 +216,7 @@
                                                                                 {
                                                                                     "type": "img",
                                                                                     "props": {
+                                                                                        "className": "slider2",
                                                                                         "src": "http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374612/hh0pnll84a2busyek7qv.jpg",
                                                                                         "alt": "slider_image",
                                                                                         "style": {
@@ -226,6 +229,7 @@
                                                                                 {
                                                                                     "type": "p",
                                                                                     "props": {
+                                                                                        "className": "slider2",
                                                                                         "style": {
                                                                                             "textAlign": "center"
                                                                                         },
@@ -246,6 +250,7 @@
                                                         "children": {
                                                             "type": "div",
                                                             "props": {
+                                                                "id": "slider3",
                                                                 "style": {
                                                                     "display": "flex",
                                                                     "padding": "1rem",
@@ -278,6 +283,7 @@
                                                                                 {
                                                                                     "type": "h4",
                                                                                     "props": {
+                                                                                        "className": "slider3",
                                                                                         "style": {
                                                                                             "fontWeight": 500,
                                                                                             "textTransform": "capitalize"
@@ -299,6 +305,7 @@
                                                                                 {
                                                                                     "type": "img",
                                                                                     "props": {
+                                                                                        "className": "slider3",
                                                                                         "src": "http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374642/jozuh877cfq2arntlnp6.jpg",
                                                                                         "alt": "slider_image",
                                                                                         "style": {
@@ -311,6 +318,7 @@
                                                                                 {
                                                                                     "type": "p",
                                                                                     "props": {
+                                                                                        "className": "slider3",
                                                                                         "style": {
                                                                                             "textAlign": "center"
                                                                                         },
@@ -331,6 +339,7 @@
                                                         "children": {
                                                             "type": "div",
                                                             "props": {
+                                                                "id": "slider4",
                                                                 "style": {
                                                                     "display": "flex",
                                                                     "padding": "1rem",
@@ -363,6 +372,7 @@
                                                                                 {
                                                                                     "type": "h4",
                                                                                     "props": {
+                                                                                        "className": "slider4",
                                                                                         "style": {
                                                                                             "fontWeight": 500,
                                                                                             "textTransform": "capitalize"
@@ -384,6 +394,7 @@
                                                                                 {
                                                                                     "type": "img",
                                                                                     "props": {
+                                                                                        "className": "slider4",
                                                                                         "src": "http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374681/gtopxnmx0uyspdg9ivpj.jpg ",
                                                                                         "alt": "slider_image",
                                                                                         "style": {
@@ -396,6 +407,7 @@
                                                                                 {
                                                                                     "type": "p",
                                                                                     "props": {
+                                                                                        "className": "slider4",
                                                                                         "style": {
                                                                                             "textAlign": "center"
                                                                                         },
@@ -416,6 +428,7 @@
                                                         "children": {
                                                             "type": "div",
                                                             "props": {
+                                                                "id": "slider5",
                                                                 "style": {
                                                                     "display": "flex",
                                                                     "padding": "1rem",
@@ -448,6 +461,7 @@
                                                                                 {
                                                                                     "type": "h4",
                                                                                     "props": {
+                                                                                        "className": "slider5",
                                                                                         "style": {
                                                                                             "fontWeight": 500,
                                                                                             "textTransform": "capitalize"
@@ -469,6 +483,7 @@
                                                                                 {
                                                                                     "type": "img",
                                                                                     "props": {
+                                                                                        "className": "slider5",
                                                                                         "src": "http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374704/o9smwvgrajtbtsfowenb.jpg",
                                                                                         "alt": "slider_image",
                                                                                         "style": {
@@ -481,6 +496,7 @@
                                                                                 {
                                                                                     "type": "p",
                                                                                     "props": {
+                                                                                        "className": "slider5",
                                                                                         "style": {
                                                                                             "textAlign": "center"
                                                                                         },
@@ -501,6 +517,7 @@
                                                         "children": {
                                                             "type": "div",
                                                             "props": {
+                                                                "id": "slider6",
                                                                 "style": {
                                                                     "display": "flex",
                                                                     "padding": "1rem",
@@ -533,6 +550,7 @@
                                                                                 {
                                                                                     "type": "h4",
                                                                                     "props": {
+                                                                                        "className": "slider6",
                                                                                         "style": {
                                                                                             "fontWeight": 500,
                                                                                             "textTransform": "capitalize"
@@ -554,6 +572,7 @@
                                                                                 {
                                                                                     "type": "img",
                                                                                     "props": {
+                                                                                        "className": "slider6",
                                                                                         "src": "http://res.cloudinary.com/dssvqu4bj/image/upload/v1702374731/gpbzg6cn7q0yexfmeumj.jpg",
                                                                                         "alt": "slider_image",
                                                                                         "style": {
@@ -566,6 +585,7 @@
                                                                                 {
                                                                                     "type": "p",
                                                                                     "props": {
+                                                                                        "className": "slider6",
                                                                                         "style": {
                                                                                             "textAlign": "center"
                                                                                         },
